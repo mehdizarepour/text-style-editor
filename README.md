@@ -1,2 +1,2 @@
 # TextStyleSelector
-Test style selector widget for flutter
+Text style selector widget for flutter
