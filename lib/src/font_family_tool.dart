@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FontFamilyTool extends StatelessWidget {
+  // Font family list
   final List<String> fonts = [
     'Billabong',
     'OpenSans-Regular',

@@ -2,6 +2,7 @@ library text_style_editor;
 
 import 'package:flutter/material.dart';
 import 'src/font_family_tool.dart';
+import 'src/font-size-tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final Color primaryColor;
@@ -11,7 +12,7 @@ class TextStyleEditor extends StatefulWidget {
   TextStyleEditor({
     this.primaryColor = Colors.black12,
     this.secondaryColor = Colors.black26,
-    this.height = 200
+    this.height
   });
 
   @override
@@ -70,7 +71,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
               ),
           ),
 
-          FontFamilyTool()
+          FontSizeTool()
 
         ],
       ),
