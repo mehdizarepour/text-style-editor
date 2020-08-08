@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:text_style_editor/text_style_editor.dart';
+import 'package:text_style_editor/text_style_editor.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text('TextStyleEditor Demo'),
+        child: TextStyleEditor(),
       ),
     );
   }
