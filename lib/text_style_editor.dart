@@ -1,6 +1,7 @@
 library text_style_editor;
 
 import 'package:flutter/material.dart';
+import 'src/font_family_tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final Color primaryColor;
@@ -69,7 +70,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
               ),
           ),
 
-          // [TODO] Editor options
+          FontFamilyTool()
 
         ],
       ),
