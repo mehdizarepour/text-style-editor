@@ -2,6 +2,8 @@ library text_style_editor;
 
 import 'package:flutter/material.dart';
 import 'src/font_color_tool.dart';
+import 'src/font_family_tool.dart';
+import 'src/font_size_tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final Color primaryColor;
@@ -20,12 +22,22 @@ class TextStyleEditor extends StatefulWidget {
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
   int currentToolIndex = 1;
+  Widget currentTool = FontFamilyTool();
+
   final Color activeToolColor = Colors.black;
   final Color inActiveToolColor = Colors.grey;
 
   void _changeOptionIndex(int index) {
     setState(() {
       currentToolIndex = index;
+
+      if (currentToolIndex == 1) {
+        currentTool = FontFamilyTool();
+      } else if (currentToolIndex == 2) {
+        currentTool = FontSizeTool();
+      } else if (currentToolIndex == 4) {
+        currentTool = FontColorTool();
+      }
     });
   }
   @override
@@ -69,9 +81,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 )
               ),
           ),
-
-          FontColorTool()
-
+          currentTool
         ],
       ),
     );
