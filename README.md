@@ -1,2 +1,2 @@
-# TextStyleSelector
-Text style selector widget for flutter
+# TextStyleEditor
+Text style editor widget for flutter
