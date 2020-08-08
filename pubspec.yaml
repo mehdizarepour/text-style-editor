@@ -1,8 +1,8 @@
 name: text_style_editor
-description: A new Flutter package project.
+description: A Flutter text style editor package.
 version: 0.0.1
-author:
-homepage:
+author: Mehdi Zarepour<mehdi.zarepoor@gmail.com>
+homepage: https://github.com/mehdizarepour/text_style_editor
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
