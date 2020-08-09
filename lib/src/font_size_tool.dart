@@ -31,8 +31,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             minValue: 1,
             maxValue: 100,
             defaultValue: widget.defaultTextStyle.fontSize,
-            leftIcon: Icon(Icons.format_bold, size: 10),
-            rightIcon: Icon(Icons.format_bold, size: 15),
+            leftIcon: Icon(Icons.text_fields, size: 15),
+            rightIcon: Icon(Icons.text_fields, size: 25),
             onValueChanged: (value) {
               /// Update font size
               textStyle.fontSize = value;
@@ -45,8 +45,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             minValue: 0,
             maxValue: 100,
             defaultValue: 0.0,
-            leftIcon: Icon(Icons.format_bold, size: 15),
-            rightIcon: Icon(Icons.format_bold, size: 15),
+            leftIcon: Icon(Icons.settings_ethernet, size: 20),
+            rightIcon: Icon(Icons.settings_ethernet, size: 20),
             onValueChanged: (value) {
               /// Update font size
               textStyle.letterSpacing = value;
@@ -57,10 +57,10 @@ class _FontSizeToolState extends State<FontSizeTool> {
           /// Text hight slider
           _SliderValueSelector(
             minValue: 1,
-            maxValue: 100,
+            maxValue: 10,
             defaultValue: 1,
-            leftIcon: Icon(Icons.format_bold, size: 15),
-            rightIcon: Icon(Icons.format_bold, size: 15),
+            leftIcon: Icon(Icons.format_line_spacing, size: 20),
+            rightIcon: Icon(Icons.format_line_spacing, size: 20),
             onValueChanged: (value) {
               /// Update font size
               textStyle.hight = value;
