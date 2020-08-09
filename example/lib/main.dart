@@ -29,14 +29,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextStyle textStyle;
+
+  @override
+  void initState() {
+    textStyle = TextStyle();
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: TextStyleEditor(),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(top: 200),
+                width: 500,
+                color: Colors.grey,
+                child: Text('Sample text', style: textStyle, textAlign: TextAlign.center,),
+              )
+            ),
+            Expanded(
+              child: TextStyleEditor(
+                textStyle: textStyle,
+                onTextStyleChange: (value) {
+                  setState(() {
+                    textStyle = value;
+                  });
+                },
+              )
+            )
+          ],
+        )
       ),
     );
   }

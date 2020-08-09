@@ -1,42 +1,72 @@
 import 'package:flutter/material.dart';
+import 'custom-text-style.dart';
 
 class FontSizeTool extends StatefulWidget {
+  final CustomTextStyle defaultTextStyle;
+  final ValueChanged<CustomTextStyle> onTextStyleChanged;
+
+  FontSizeTool({@required this.defaultTextStyle, @required this.onTextStyleChanged});
+
   @override
   _FontSizeToolState createState() => _FontSizeToolState();
 }
 
 class _FontSizeToolState extends State<FontSizeTool> {
-  double currentFontSize;
-  final double minFontSize;
-  final double maxFontSize;
+  CustomTextStyle textStyle;
 
-  _FontSizeToolState({this.currentFontSize = 16, this.minFontSize = 1, this.maxFontSize = 100});
+  @override
+  void initState() {
+    textStyle = widget.defaultTextStyle;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
+          /// FontSize slider
           _SliderValueSelector(
             minValue: 1,
             maxValue: 100,
             defaultValue: 16,
             leftIcon: Icon(Icons.format_bold, size: 10),
             rightIcon: Icon(Icons.format_bold, size: 15),
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.fontSize = value;
+
+              widget.onTextStyleChanged(textStyle);
+            },
           ),
+          /// LetterSpacing Slider
           _SliderValueSelector(
             minValue: 1,
             maxValue: 100,
             defaultValue: 5,
             leftIcon: Icon(Icons.format_bold, size: 15),
             rightIcon: Icon(Icons.format_bold, size: 15),
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.letterSpacing = value;
+
+              widget.onTextStyleChanged(textStyle);
+            },
           ),
+          /// Text hight slider
           _SliderValueSelector(
             minValue: 1,
             maxValue: 100,
             defaultValue: 30,
             leftIcon: Icon(Icons.format_bold, size: 15),
             rightIcon: Icon(Icons.format_bold, size: 15),
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.hight = value;
+
+              widget.onTextStyleChanged(textStyle);
+            },
           ),
         ],
       )
@@ -50,13 +80,15 @@ class _SliderValueSelector extends StatefulWidget {
   final double defaultValue;
   final Icon leftIcon;
   final Icon rightIcon;
+  final ValueChanged<double> onValueChanged;
 
   _SliderValueSelector({
     @required this.minValue,
     @required this.maxValue,
     @required this.leftIcon,
     @required this.rightIcon,
-    this.defaultValue
+    this.defaultValue,
+    this.onValueChanged
   });
 
   @override
@@ -92,6 +124,7 @@ class _SliderValueSelectorState extends State<_SliderValueSelector> {
               onChanged: (double value) {
                 setState(() {
                   currentValue = value;
+                  widget.onValueChanged(value);
                 });
               },
             ),

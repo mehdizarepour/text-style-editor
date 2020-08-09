@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
+import 'src/custom-text-style.dart';
 
 class TextStyleEditor extends StatefulWidget {
+  final TextStyle textStyle;
+  final ValueChanged<TextStyle> onTextStyleChange;
   final Color primaryColor;
   final Color secondaryColor;
   final double height;
   
   TextStyleEditor({
+    @required this.textStyle,
+    @required this.onTextStyleChange,
     this.primaryColor = Colors.black12,
     this.secondaryColor = Colors.black26,
-    this.height
+    this.height,
   });
 
   @override
@@ -21,20 +26,72 @@ class TextStyleEditor extends StatefulWidget {
 }
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
+  CustomTextStyle customTextStyle;
+
   int currentToolIndex = 1;
-  Widget currentTool = FontFamilyTool();
+  Widget currentTool;
 
   final Color activeToolColor = Colors.black;
   final Color inActiveToolColor = Colors.grey;
 
-  void _changeOptionIndex(int index) {
+  @override
+  void initState() {
+    customTextStyle = CustomTextStyle(
+      fontFamily: widget.textStyle.fontFamily,
+      fontSize: widget.textStyle.fontSize,
+      color: widget.textStyle.color,
+      hight: widget.textStyle.height,
+      letterSpacing: widget.textStyle.letterSpacing
+    );
+
+    currentTool = FontFamilyTool(
+      defaultTextStyle: customTextStyle,
+      onTextStyleChanged: _onFontFamilyChanged
+    );
+
+    super.initState();
+  }
+
+  void _onFontFamilyChanged(value) {
+    customTextStyle = value;
+
+    widget.onTextStyleChange(TextStyle(
+      fontFamily: customTextStyle.fontFamily,
+      fontSize: customTextStyle.fontSize,
+      height: customTextStyle.hight,
+      letterSpacing: customTextStyle.letterSpacing,
+      color: customTextStyle.color
+    ));
+  }
+
+  void _onFontSizeChanged(value) {
+    customTextStyle = value;
+
+    // TODO: Create utils class to map these classes
+    widget.onTextStyleChange(TextStyle(
+      fontFamily: customTextStyle.fontFamily,
+      fontSize: customTextStyle.fontSize,
+      height: customTextStyle.hight,
+      letterSpacing: customTextStyle.letterSpacing,
+      color: customTextStyle.color
+    ));
+  }
+
+  void _changeToolIndex(int index) {
     setState(() {
       currentToolIndex = index;
 
       if (currentToolIndex == 1) {
-        currentTool = FontFamilyTool();
+        // TODO: Pass selected post to `FontFamilyTool` class
+        currentTool = FontFamilyTool(
+          defaultTextStyle: customTextStyle,
+          onTextStyleChanged: _onFontFamilyChanged
+        );
       } else if (currentToolIndex == 2) {
-        currentTool = FontSizeTool();
+        currentTool = FontSizeTool(
+          defaultTextStyle: customTextStyle,
+          onTextStyleChanged: _onFontSizeChanged,
+        );
       } else if (currentToolIndex == 4) {
         currentTool = FontColorTool();
       }
@@ -63,19 +120,19 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.text_format, color: currentToolIndex == 1 ? activeToolColor : inActiveToolColor),
-                      onPressed: () => _changeOptionIndex(1)
+                      onPressed: () => _changeToolIndex(1)
                     ),
                     IconButton(
                       icon: Icon(Icons.text_fields, color: currentToolIndex == 2 ? activeToolColor : inActiveToolColor),
-                      onPressed: () => _changeOptionIndex(2)
+                      onPressed: () => _changeToolIndex(2)
                     ),
                     IconButton(
                       icon: Icon(Icons.format_align_left, color: currentToolIndex == 3 ? activeToolColor : inActiveToolColor),
-                      onPressed: () => _changeOptionIndex(3)
+                      onPressed: () => _changeToolIndex(3)
                     ),
                     IconButton(
                       icon: Icon(Icons.palette, color: currentToolIndex == 4 ? activeToolColor : inActiveToolColor),
-                      onPressed: () => _changeOptionIndex(4)
+                      onPressed: () => _changeToolIndex(4)
                     ),
                   ]
                 )

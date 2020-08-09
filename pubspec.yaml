@@ -41,52 +41,52 @@ flutter:
   fonts:
     - family: Billabong
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Billabong.ttf
+        - asset: packages/text_style_editor/fonts/Billabong.ttf
     - family: AlexBrush-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/AlexBrush-Regular.ttf
+        - asset: packages/text_style_editor/fonts/AlexBrush-Regular.ttf
     - family: Allura-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Allura-Regular.otf
+        - asset: packages/text_style_editor/fonts/Allura-Regular.otf
     - family: Arizonia-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Arizonia-Regular.ttf
+        - asset: packages/text_style_editor/fonts/Arizonia-Regular.ttf
     - family: ChunkFive-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/ChunkFive-Regular.otf
+        - asset: packages/text_style_editor/fonts/ChunkFive-Regular.otf
     - family: GrandHotel-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/GrandHotel-Regular.otf
+        - asset: packages/text_style_editor/fonts/GrandHotel-Regular.otf
     - family: GreatVibes-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/GreatVibes-Regular.otf
+        - asset: packages/text_style_editor/fonts/GreatVibes-Regular.otf
     - family: Lobster_1.3
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Lobster_1.3.otf
+        - asset: packages/text_style_editor/fonts/Lobster_1.3.otf
     - family: OpenSans-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/OpenSans-Regular.ttf
+        - asset: packages/text_style_editor/fonts/OpenSans-Regular.ttf
     - family: OstrichSans-Medium
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/OstrichSans-Medium.otf
+        - asset: packages/text_style_editor/fonts/OstrichSans-Medium.otf
     - family: Oswald-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Oswald-Regular.ttf
+        - asset: packages/text_style_editor/fonts/Oswald-Regular.ttf
     - family: Pacifico
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Pacifico.ttf
+        - asset: packages/text_style_editor/fonts/Pacifico.ttf
     - family: Quicksand-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Quicksand-Regular.otf
+        - asset: packages/text_style_editor/fonts/Quicksand-Regular.otf
     - family: Roboto-Regular
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Roboto-Regular.ttf
+        - asset: packages/text_style_editor/fonts/Roboto-Regular.ttf
     - family: SEASRN
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/SEASRN.ttf
+        - asset: packages/text_style_editor/fonts/SEASRN.ttf
     - family: Windsong
       fonts:
-        - asset: packages/text_style_editor/assets/fonts/Windsong.ttf
+        - asset: packages/text_style_editor/fonts/Windsong.ttf
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
