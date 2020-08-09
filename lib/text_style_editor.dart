@@ -5,10 +5,12 @@ import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
 import 'src/custom-text-style.dart';
+import 'src/text_alignment_tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final TextStyle textStyle;
   final ValueChanged<TextStyle> onTextStyleChange;
+  final ValueChanged<TextAlign> onTextAlignChanged;
   final Color primaryColor;
   final Color secondaryColor;
   final double height;
@@ -16,6 +18,7 @@ class TextStyleEditor extends StatefulWidget {
   TextStyleEditor({
     @required this.textStyle,
     @required this.onTextStyleChange,
+    this.onTextAlignChanged,
     this.primaryColor = Colors.black12,
     this.secondaryColor = Colors.black26,
     this.height,
@@ -126,9 +129,10 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       icon: Icon(Icons.text_fields, color: currentToolIndex == 2 ? activeToolColor : inActiveToolColor),
                       onPressed: () => _changeToolIndex(2)
                     ),
-                    IconButton(
-                      icon: Icon(Icons.format_align_left, color: currentToolIndex == 3 ? activeToolColor : inActiveToolColor),
-                      onPressed: () => _changeToolIndex(3)
+                    TextAlignmentTool(
+                      activeColor: activeToolColor,
+                      inActiveColor: inActiveToolColor,
+                      onTextAlignChanged: widget.onTextAlignChanged,
                     ),
                     IconButton(
                       icon: Icon(Icons.palette, color: currentToolIndex == 4 ? activeToolColor : inActiveToolColor),

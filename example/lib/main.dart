@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle textStyle;
+  TextAlign textAlign;
 
   @override
   void initState() {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 200),
                 width: 500,
                 color: Colors.grey,
-                child: Text('Sample text', style: textStyle, textAlign: TextAlign.center,),
+                child: Text('Sample text', style: textStyle, textAlign: textAlign),
               )
             ),
             Expanded(
@@ -60,6 +61,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTextStyleChange: (value) {
                   setState(() {
                     textStyle = value;
+                  });
+                },
+                onTextAlignChanged: (value) {
+                  setState(() {
+                    textAlign = value;
                   });
                 },
               )
