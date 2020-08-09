@@ -12,6 +12,6 @@ class CustomTextStyle {
     this.fontSize,
     this.color = Colors.black,
     this.hight = 0.0,
-    this.letterSpacing
+    this.letterSpacing = 0.0
   });
 }

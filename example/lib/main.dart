@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    textStyle = TextStyle();
+    textStyle = TextStyle(fontSize: 25);
 
     super.initState();
   }

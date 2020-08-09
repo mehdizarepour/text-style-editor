@@ -30,7 +30,7 @@ class _FontSizeToolState extends State<FontSizeTool> {
           _SliderValueSelector(
             minValue: 1,
             maxValue: 100,
-            defaultValue: 16,
+            defaultValue: widget.defaultTextStyle.fontSize,
             leftIcon: Icon(Icons.format_bold, size: 10),
             rightIcon: Icon(Icons.format_bold, size: 15),
             onValueChanged: (value) {
@@ -42,9 +42,9 @@ class _FontSizeToolState extends State<FontSizeTool> {
           ),
           /// LetterSpacing Slider
           _SliderValueSelector(
-            minValue: 1,
+            minValue: 0,
             maxValue: 100,
-            defaultValue: 5,
+            defaultValue: 0.0,
             leftIcon: Icon(Icons.format_bold, size: 15),
             rightIcon: Icon(Icons.format_bold, size: 15),
             onValueChanged: (value) {
@@ -58,7 +58,7 @@ class _FontSizeToolState extends State<FontSizeTool> {
           _SliderValueSelector(
             minValue: 1,
             maxValue: 100,
-            defaultValue: 30,
+            defaultValue: 1,
             leftIcon: Icon(Icons.format_bold, size: 15),
             rightIcon: Icon(Icons.format_bold, size: 15),
             onValueChanged: (value) {
