@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'custom-text-style.dart';
 
 class FontColorTool extends StatefulWidget {
+  final CustomTextStyle defaultTextStyle;
+  final ValueChanged<CustomTextStyle> onTextStyleChanged;
+
+  FontColorTool({@required this.defaultTextStyle, @required this.onTextStyleChanged});
+
   @override
   _FontColorToolState createState() => _FontColorToolState();
 }
 
 class _FontColorToolState extends State<FontColorTool> {
+  CustomTextStyle customTextStyle;
+
+  void _onColorSelected(color) {
+    widget.defaultTextStyle.color = color;
+
+    widget.onTextStyleChanged(widget.defaultTextStyle);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,32 +30,32 @@ class _FontColorToolState extends State<FontColorTool> {
         children: [
           Column(
             children: [
-              Container(child: _ColorWidget(isColorPicker: true), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.blue),
+              Container(child: _ColorWidget(isColorPicker: true, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
+              _ColorWidget(color: Colors.blue, onColorSelected: _onColorSelected),
             ]
           ),
           Column(
             children: [
-              Container(child: _ColorWidget(color: Colors.yellow), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.green),
+              Container(child: _ColorWidget(color: Colors.yellow, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
+              _ColorWidget(color: Colors.green, onColorSelected: _onColorSelected),
             ]
           ),
           Column(
             children: [
-              Container(child: _ColorWidget(color: Colors.grey), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.red),
+              Container(child: _ColorWidget(color: Colors.grey, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
+              _ColorWidget(color: Colors.red, onColorSelected: _onColorSelected),
             ]
           ),
           Column(
             children: [
-              Container(child: _ColorWidget(color: Colors.white), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.brown),
+              Container(child: _ColorWidget(color: Colors.white, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
+              _ColorWidget(color: Colors.brown, onColorSelected: _onColorSelected),
             ]
           ),
           Column(
             children: [
-              Container(child: _ColorWidget(color: Colors.lime), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.black,),
+              Container(child: _ColorWidget(color: Colors.lime, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
+              _ColorWidget(color: Colors.black, onColorSelected: _onColorSelected),
             ]
           ),
         ]
@@ -55,8 +69,13 @@ class _FontColorToolState extends State<FontColorTool> {
 class _ColorWidget extends StatefulWidget {
   final Color color;
   final bool isColorPicker;
+  final ValueChanged<Color> onColorSelected;
 
-  _ColorWidget({this.color, this.isColorPicker = false});
+  _ColorWidget({
+    @required this.onColorSelected,
+    this.color = Colors.black,
+    this.isColorPicker = false
+  });
 
   @override
   _ColorWidgetState createState() => _ColorWidgetState();
@@ -64,17 +83,12 @@ class _ColorWidget extends StatefulWidget {
 
 class _ColorWidgetState extends State<_ColorWidget> {
   Color currentColor;
-  Color pickerColor = Colors.black;
 
   @override
   void initState() {
     currentColor = widget.color;
 
     super.initState();
-  }
-
-  void changeColor(Color color) {
-    setState(() => pickerColor = color);
   }
 
   void openColorPicker() {
@@ -84,8 +98,8 @@ class _ColorWidgetState extends State<_ColorWidget> {
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: pickerColor,
-            onColorChanged: changeColor,
+            pickerColor: Colors.black,
+            onColorChanged: widget.onColorSelected,
             showLabel: true,
             pickerAreaHeightPercent: 0.8,
           ),
@@ -108,7 +122,14 @@ class _ColorWidgetState extends State<_ColorWidget> {
     double maxWidth = MediaQuery.of(context).size.width / 8;
 
     return GestureDetector(
-      onTap: openColorPicker,
+      onTap: () {
+        if (widget.isColorPicker) {
+          openColorPicker();
+          return;
+        }
+
+        widget.onColorSelected(widget.color);
+      },
       child: Container(
         width: maxWidth,
         height: maxWidth,

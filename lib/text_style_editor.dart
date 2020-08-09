@@ -80,6 +80,19 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
     ));
   }
 
+  void _onFontColorChanged(value) {
+    customTextStyle = value;
+
+    // TODO: Create utils class to map these classes
+    widget.onTextStyleChange(TextStyle(
+      fontFamily: customTextStyle.fontFamily,
+      fontSize: customTextStyle.fontSize,
+      height: customTextStyle.hight,
+      letterSpacing: customTextStyle.letterSpacing,
+      color: customTextStyle.color
+    ));
+  }
+
   void _changeToolIndex(int index) {
     setState(() {
       currentToolIndex = index;
@@ -96,7 +109,10 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
           onTextStyleChanged: _onFontSizeChanged,
         );
       } else if (currentToolIndex == 4) {
-        currentTool = FontColorTool();
+        currentTool = FontColorTool(
+          defaultTextStyle: customTextStyle,
+          onTextStyleChanged: _onFontColorChanged,
+        );
       }
     });
   }
