@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'custom-text-style.dart';
+import 'custom_text_style.dart';
 
 class FontSizeTool extends StatefulWidget {
   final CustomTextStyle defaultTextStyle;
