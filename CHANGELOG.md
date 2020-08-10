@@ -26,3 +26,7 @@ Change tools design and colors
 ## [0.1.0-beta.1] - 2020-08-11
 
 - Fix some format issue
+
+## [0.1.0-beta.2] - 2020-08-11
+
+- Fix some files dar format
