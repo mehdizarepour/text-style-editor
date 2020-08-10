@@ -30,6 +30,8 @@ class TextStyleEditor extends StatefulWidget {
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
   CustomTextStyle customTextStyle;
+  Color primaryColor;
+  Color secondaryColor;
 
   int currentToolIndex = 1;
   Widget currentTool;
@@ -106,6 +108,8 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
       } else if (currentToolIndex == 2) {
         currentTool = FontSizeTool(
           defaultTextStyle: customTextStyle,
+          primaryColor: widget.primaryColor,
+          secondaryColor: widget.secondaryColor,
           onTextStyleChanged: _onFontSizeChanged,
         );
       } else if (currentToolIndex == 4) {
@@ -158,7 +162,11 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 )
               ),
           ),
-          currentTool
+          Expanded(
+            child: SingleChildScrollView(
+              child: currentTool
+            ),
+          )
         ],
       ),
     );

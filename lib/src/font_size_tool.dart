@@ -4,8 +4,15 @@ import 'custom-text-style.dart';
 class FontSizeTool extends StatefulWidget {
   final CustomTextStyle defaultTextStyle;
   final ValueChanged<CustomTextStyle> onTextStyleChanged;
+  final Color primaryColor;
+  final Color secondaryColor;
 
-  FontSizeTool({@required this.defaultTextStyle, @required this.onTextStyleChanged});
+  FontSizeTool({
+    @required this.defaultTextStyle,
+    @required this.onTextStyleChanged,
+    this.primaryColor,
+    this.secondaryColor
+  });
 
   @override
   _FontSizeToolState createState() => _FontSizeToolState();
@@ -33,6 +40,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             defaultValue: widget.defaultTextStyle.fontSize,
             leftIcon: Icon(Icons.text_fields, size: 15),
             rightIcon: Icon(Icons.text_fields, size: 25),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
             onValueChanged: (value) {
               /// Update font size
               textStyle.fontSize = value;
@@ -47,6 +56,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             defaultValue: 0.0,
             leftIcon: Icon(Icons.settings_ethernet, size: 20),
             rightIcon: Icon(Icons.settings_ethernet, size: 20),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
             onValueChanged: (value) {
               /// Update font size
               textStyle.letterSpacing = value;
@@ -61,6 +72,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             defaultValue: 1,
             leftIcon: Icon(Icons.format_line_spacing, size: 20),
             rightIcon: Icon(Icons.format_line_spacing, size: 20),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
             onValueChanged: (value) {
               /// Update font size
               textStyle.hight = value;
@@ -80,6 +93,8 @@ class _SliderValueSelector extends StatefulWidget {
   final double defaultValue;
   final Icon leftIcon;
   final Icon rightIcon;
+  final Color activeColor;
+  final Color inActiveColor;
   final ValueChanged<double> onValueChanged;
 
   _SliderValueSelector({
@@ -87,6 +102,8 @@ class _SliderValueSelector extends StatefulWidget {
     @required this.maxValue,
     @required this.leftIcon,
     @required this.rightIcon,
+    this.activeColor,
+    this.inActiveColor,
     this.defaultValue,
     this.onValueChanged
   });
@@ -118,8 +135,8 @@ class _SliderValueSelectorState extends State<_SliderValueSelector> {
               min: widget.minValue,
               max: widget.maxValue,
               divisions: widget.maxValue.toInt(),
-              activeColor: Colors.black26,
-              inactiveColor: Colors.grey[300],
+              activeColor: widget.activeColor,
+              inactiveColor: widget.inActiveColor,
               // label: currentValue.round().toString(),
               onChanged: (double value) {
                 setState(() {

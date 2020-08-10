@@ -17,3 +17,8 @@ Change tools design and colors
 
 - Change `FontColorTool` design
 - Deactive color picker option
+
+## [0.1.0-beta] - 2020-08-11
+
+- Scroll able tools body
+- Fix first and second colors issue
