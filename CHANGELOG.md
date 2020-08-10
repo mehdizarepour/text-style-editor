@@ -22,3 +22,7 @@ Change tools design and colors
 
 - Scroll able tools body
 - Fix first and second colors issue
+
+## [0.1.0-beta.1] - 2020-08-11
+
+- Fix some format issue

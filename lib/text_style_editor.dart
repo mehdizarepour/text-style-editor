@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
-import 'src/custom-text-style.dart';
+import 'src/custom_text_style.dart';
 import 'src/text_alignment_tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
