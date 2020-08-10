@@ -25,40 +25,49 @@ class _FontColorToolState extends State<FontColorTool> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Column(
         children: [
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(child: _ColorWidget(isColorPicker: true, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.blue, onColorSelected: _onColorSelected),
-            ]
-          ),
-          Column(
-            children: [
-              Container(child: _ColorWidget(color: Colors.yellow, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.green, onColorSelected: _onColorSelected),
-            ]
-          ),
-          Column(
-            children: [
-              Container(child: _ColorWidget(color: Colors.grey, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.red, onColorSelected: _onColorSelected),
-            ]
-          ),
-          Column(
-            children: [
-              Container(child: _ColorWidget(color: Colors.white, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
-              _ColorWidget(color: Colors.brown, onColorSelected: _onColorSelected),
-            ]
-          ),
-          Column(
-            children: [
-              Container(child: _ColorWidget(color: Colors.lime, onColorSelected: _onColorSelected), margin: EdgeInsets.only(bottom: 10),),
               _ColorWidget(color: Colors.black, onColorSelected: _onColorSelected),
+              _ColorWidget(color: Colors.white, onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff112CBC4')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xffFDA7DF')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xffED4C67')), onColorSelected: _onColorSelected),
             ]
           ),
-        ]
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _ColorWidget(color: Color(int.parse('0xffF79F1F')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xffA3CB38')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff1289A7')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xffD980FA')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xffB53471')), onColorSelected: _onColorSelected),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _ColorWidget(color: Color(int.parse('0xffEE5A24')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff009432')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff0652DD')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff9980FA')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff833471')), onColorSelected: _onColorSelected),
+            ]
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _ColorWidget(color: Color(int.parse('0xffEA2027')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff006266')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff1B1464')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff5758BB')), onColorSelected: _onColorSelected),
+              _ColorWidget(color: Color(int.parse('0xff6F1E51')), onColorSelected: _onColorSelected),
+            ]
+          ),
+        ],
       )
     );
   }
@@ -119,7 +128,7 @@ class _ColorWidgetState extends State<_ColorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double maxWidth = MediaQuery.of(context).size.width / 8;
+    double maxWidth = MediaQuery.of(context).size.width / 5.6;
 
     return GestureDetector(
       onTap: () {
@@ -132,7 +141,7 @@ class _ColorWidgetState extends State<_ColorWidget> {
       },
       child: Container(
         width: maxWidth,
-        height: maxWidth,
+        height: maxWidth / 2,
         decoration: BoxDecoration(
           gradient: widget.isColorPicker
             ? SweepGradient(
@@ -141,8 +150,8 @@ class _ColorWidgetState extends State<_ColorWidget> {
             )
             : null,
           color: currentColor,
-          border: Border.all(color: Colors.black12),
-          borderRadius: BorderRadius.circular(100)
+          // border: Border.all(color: Colors.black12),
+          // borderRadius: BorderRadius.circular(100)
         ),
       )
     );
