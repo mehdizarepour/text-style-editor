@@ -10,3 +10,10 @@ These tools added to the editor
 - Font family tool
 - Font color tool
 - Text alignment tool
+
+## [0.1.0-alpha.1] - 2020-08-11
+
+Change tools design and colors
+
+- Change `FontColorTool` design
+- Deactive color picker option

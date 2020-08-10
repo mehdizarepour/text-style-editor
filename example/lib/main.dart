@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    textStyle = TextStyle(fontSize: 25);
+    textStyle = TextStyle(fontSize: 25, color: Colors.black);
 
     super.initState();
   }
@@ -48,23 +48,30 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 padding: EdgeInsets.only(top: 200),
                 width: 500,
-                color: Colors.grey,
                 child: Text('Sample text', style: textStyle, textAlign: textAlign),
               )
             ),
             Expanded(
-              child: TextStyleEditor(
-                textStyle: textStyle,
-                onTextStyleChange: (value) {
-                  setState(() {
-                    textStyle = value;
-                  });
-                },
-                onTextAlignChanged: (value) {
-                  setState(() {
-                    textAlign = value;
-                  });
-                },
+              child: SafeArea(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextStyleEditor(
+                      height: 250,
+                      textStyle: textStyle,
+                      onTextStyleChange: (value) {
+                        setState(() {
+                          textStyle = value;
+                        });
+                      },
+                      onTextAlignChanged: (value) {
+                        setState(() {
+                          textAlign = value;
+                        });
+                      },
+                    )
+                  )
+                )
               )
             )
           ],

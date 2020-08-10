@@ -131,7 +131,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 // width: constraints.maxWidth * 0.9,
                 decoration: BoxDecoration(
                   color: widget.primaryColor,
-                  border: Border.all(color: widget.secondaryColor),
+                  // border: Border.all(color: widget.secondaryColor),
                   borderRadius: BorderRadius.circular(20)
                 ),
                 child: Row(
