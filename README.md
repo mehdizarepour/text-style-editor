@@ -22,7 +22,7 @@ Text style editor widget for flutter
 
 ## Installation
 
-Add `text_style_editor: ^0.1.0` to your `pubspec.yaml` dependencies. And import it:
+Add `text_style_editor: ^0.2.0` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:text_style_editor/text_style_editor.dart';
