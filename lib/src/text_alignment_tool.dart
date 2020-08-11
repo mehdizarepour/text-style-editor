@@ -6,7 +6,11 @@ class TextAlignmentTool extends StatefulWidget {
   final Color inActiveColor;
   final ValueChanged<TextAlign> onTextAlignChanged;
 
-  TextAlignmentTool({@required this.onTextAlignChanged, this.textAlign, this.activeColor, this.inActiveColor});
+  TextAlignmentTool(
+      {@required this.onTextAlignChanged,
+      this.textAlign,
+      this.activeColor,
+      this.inActiveColor});
 
   @override
   _TextAlignmentToolState createState() => _TextAlignmentToolState();
@@ -50,9 +54,8 @@ class _TextAlignmentToolState extends State<TextAlignmentTool> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => setState(() => _color = widget.activeColor),
-      onTapUp: (_) => _onChangeAlignment(),
-      child: Icon(_currentIcon, color: _color)
-    );
+        onTapDown: (_) => setState(() => _color = widget.activeColor),
+        onTapUp: (_) => _onChangeAlignment(),
+        child: Icon(_currentIcon, color: _color));
   }
 }

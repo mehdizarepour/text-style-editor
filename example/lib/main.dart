@@ -38,45 +38,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Expanded(
+          child: Column(
+        children: <Widget>[
+          Expanded(
               child: Container(
-                padding: EdgeInsets.only(top: 200),
-                width: 500,
-                child: Text('Sample text', style: textStyle, textAlign: textAlign),
-              )
-            ),
-            Expanded(
+            padding: EdgeInsets.only(top: 200),
+            width: 500,
+            child: Text('Sample text', style: textStyle, textAlign: textAlign),
+          )),
+          Expanded(
               child: SafeArea(
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: TextStyleEditor(
-                      height: 250,
-                      textStyle: textStyle,
-                      onTextStyleChange: (value) {
-                        setState(() {
-                          textStyle = value;
-                        });
-                      },
-                      onTextAlignChanged: (value) {
-                        setState(() {
-                          textAlign = value;
-                        });
-                      },
-                    )
-                  )
-                )
-              )
-            )
-          ],
-        )
-      ),
+                  child: Container(
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: TextStyleEditor(
+                            height: 250,
+                            textStyle: textStyle,
+                            onTextStyleChange: (value) {
+                              setState(() {
+                                textStyle = value;
+                              });
+                            },
+                            onTextAlignChanged: (value) {
+                              setState(() {
+                                textAlign = value;
+                              });
+                            },
+                          )))))
+        ],
+      )),
     );
   }
 }
