@@ -13,14 +13,16 @@ class TextStyleEditor extends StatefulWidget {
   final ValueChanged<TextAlign> onTextAlignChanged;
   final Color primaryColor;
   final Color secondaryColor;
+  final backgroundColor;
   final double height;
   
   TextStyleEditor({
-    @required this.textStyle,
     @required this.onTextStyleChange,
-    this.onTextAlignChanged,
-    this.primaryColor = Colors.black12,
-    this.secondaryColor = Colors.black26,
+    @required this.onTextAlignChanged,
+    this.textStyle,
+    this.primaryColor = Colors.black26,
+    this.secondaryColor = Colors.black12,
+    this.backgroundColor = Colors.white,
     this.height,
   });
 
@@ -29,28 +31,22 @@ class TextStyleEditor extends StatefulWidget {
 }
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
-  CustomTextStyle customTextStyle;
-  Color primaryColor;
-  Color secondaryColor;
-
-  int currentToolIndex = 1;
-  Widget currentTool;
-
-  final Color activeToolColor = Colors.black;
-  final Color inActiveToolColor = Colors.grey;
+  final Color _activeToolColor = Colors.black;
+  final Color _inActiveToolColor = Colors.grey;
+  TextStyle _textStyle;
+  CustomTextStyle _customTextStyle;
+  int _currentToolIndex = 1;
+  Widget _currentTool;
 
   @override
   void initState() {
-    customTextStyle = CustomTextStyle(
-      fontFamily: widget.textStyle.fontFamily,
-      fontSize: widget.textStyle.fontSize,
-      color: widget.textStyle.color,
-      hight: widget.textStyle.height,
-      letterSpacing: widget.textStyle.letterSpacing
-    );
+    /// Set default TextStyle
+    _textStyle = widget.textStyle == null ? TextStyle() : widget.textStyle;
 
-    currentTool = FontFamilyTool(
-      defaultTextStyle: customTextStyle,
+    _customTextStyle = CustomTextStyle.from(_textStyle);
+
+    _currentTool = FontFamilyTool(
+      defaultTextStyle: _customTextStyle,
       onTextStyleChanged: _onFontFamilyChanged
     );
 
@@ -58,63 +54,43 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
   }
 
   void _onFontFamilyChanged(value) {
-    customTextStyle = value;
+    _customTextStyle = value;
 
-    widget.onTextStyleChange(TextStyle(
-      fontFamily: customTextStyle.fontFamily,
-      fontSize: customTextStyle.fontSize,
-      height: customTextStyle.hight,
-      letterSpacing: customTextStyle.letterSpacing,
-      color: customTextStyle.color
-    ));
+    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
   }
 
   void _onFontSizeChanged(value) {
-    customTextStyle = value;
+    _customTextStyle = value;
 
-    // TODO: Create utils class to map these classes
-    widget.onTextStyleChange(TextStyle(
-      fontFamily: customTextStyle.fontFamily,
-      fontSize: customTextStyle.fontSize,
-      height: customTextStyle.hight,
-      letterSpacing: customTextStyle.letterSpacing,
-      color: customTextStyle.color
-    ));
+    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
   }
 
   void _onFontColorChanged(value) {
-    customTextStyle = value;
+    _customTextStyle = value;
 
-    // TODO: Create utils class to map these classes
-    widget.onTextStyleChange(TextStyle(
-      fontFamily: customTextStyle.fontFamily,
-      fontSize: customTextStyle.fontSize,
-      height: customTextStyle.hight,
-      letterSpacing: customTextStyle.letterSpacing,
-      color: customTextStyle.color
-    ));
+    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
   }
 
   void _changeToolIndex(int index) {
     setState(() {
-      currentToolIndex = index;
+      _currentToolIndex = index;
 
-      if (currentToolIndex == 1) {
-        // TODO: Pass selected post to `FontFamilyTool` class
-        currentTool = FontFamilyTool(
-          defaultTextStyle: customTextStyle,
+      if (_currentToolIndex == 1) {
+        // TODO: Pass selected font to `FontFamilyTool` class
+        _currentTool = FontFamilyTool(
+          defaultTextStyle: _customTextStyle,
           onTextStyleChanged: _onFontFamilyChanged
         );
-      } else if (currentToolIndex == 2) {
-        currentTool = FontSizeTool(
-          defaultTextStyle: customTextStyle,
+      } else if (_currentToolIndex == 2) {
+        _currentTool = FontSizeTool(
+          defaultTextStyle: _customTextStyle,
           primaryColor: widget.primaryColor,
           secondaryColor: widget.secondaryColor,
           onTextStyleChanged: _onFontSizeChanged,
         );
-      } else if (currentToolIndex == 4) {
-        currentTool = FontColorTool(
-          defaultTextStyle: customTextStyle,
+      } else if (_currentToolIndex == 4) {
+        _currentTool = FontColorTool(
+          defaultTextStyle: _customTextStyle,
           onTextStyleChanged: _onFontColorChanged,
         );
       }
@@ -124,7 +100,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height,
-      color: Colors.white,
+      color: widget.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -134,7 +110,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 margin: EdgeInsets.only(top: 20, left: constraints.maxWidth * 0.05, right: constraints.maxWidth * 0.05),
                 // width: constraints.maxWidth * 0.9,
                 decoration: BoxDecoration(
-                  color: widget.primaryColor,
+                  color: widget.secondaryColor,
                   // border: Border.all(color: widget.secondaryColor),
                   borderRadius: BorderRadius.circular(20)
                 ),
@@ -142,20 +118,20 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.text_format, color: currentToolIndex == 1 ? activeToolColor : inActiveToolColor),
+                      icon: Icon(Icons.title, color: _currentToolIndex == 1 ? _activeToolColor : _inActiveToolColor),
                       onPressed: () => _changeToolIndex(1)
                     ),
                     IconButton(
-                      icon: Icon(Icons.text_fields, color: currentToolIndex == 2 ? activeToolColor : inActiveToolColor),
+                      icon: Icon(Icons.tune, color: _currentToolIndex == 2 ? _activeToolColor : _inActiveToolColor),
                       onPressed: () => _changeToolIndex(2)
                     ),
                     TextAlignmentTool(
-                      activeColor: activeToolColor,
-                      inActiveColor: inActiveToolColor,
+                      activeColor: _activeToolColor,
+                      inActiveColor: _inActiveToolColor,
                       onTextAlignChanged: widget.onTextAlignChanged,
                     ),
                     IconButton(
-                      icon: Icon(Icons.palette, color: currentToolIndex == 4 ? activeToolColor : inActiveToolColor),
+                      icon: Icon(Icons.palette, color: _currentToolIndex == 4 ? _activeToolColor : _inActiveToolColor),
                       onPressed: () => _changeToolIndex(4)
                     ),
                   ]
@@ -164,7 +140,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: currentTool
+              child: _currentTool
             ),
           )
         ],

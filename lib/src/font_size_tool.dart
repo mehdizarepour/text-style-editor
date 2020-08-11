@@ -38,8 +38,8 @@ class _FontSizeToolState extends State<FontSizeTool> {
             minValue: 1,
             maxValue: 100,
             defaultValue: widget.defaultTextStyle.fontSize,
-            leftIcon: Icon(Icons.text_fields, size: 15),
-            rightIcon: Icon(Icons.text_fields, size: 25),
+            leftIcon: Icon(Icons.title, size: 15),
+            rightIcon: Icon(Icons.title, size: 25),
             activeColor: widget.primaryColor,
             inActiveColor: widget.secondaryColor,
             onValueChanged: (value) {

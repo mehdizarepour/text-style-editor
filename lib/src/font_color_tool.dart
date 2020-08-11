@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'custom_text_style.dart';
 
 class FontColorTool extends StatefulWidget {
@@ -100,45 +99,12 @@ class _ColorWidgetState extends State<_ColorWidget> {
     super.initState();
   }
 
-  void openColorPicker() {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        title: const Text('Pick a color!'),
-        content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: Colors.black,
-            onColorChanged: widget.onColorSelected,
-            showLabel: true,
-            pickerAreaHeightPercent: 0.8,
-          ),
-        ),
-        actions: [
-          FlatButton(
-            child: const Text('ok'),
-            onPressed: () {
-              // setState(() => currentColor = pickerColor);
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width / 5.6;
 
     return GestureDetector(
-      onTap: () {
-        if (widget.isColorPicker) {
-          openColorPicker();
-          return;
-        }
-
-        widget.onColorSelected(widget.color);
-      },
+      onTap: ()=> widget.onColorSelected(widget.color),
       child: Container(
         width: maxWidth,
         height: maxWidth / 2,
