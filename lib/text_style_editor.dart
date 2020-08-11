@@ -9,7 +9,7 @@ import 'src/text_alignment_tool.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final TextStyle textStyle;
-  final ValueChanged<TextStyle> onTextStyleChange;
+  final ValueChanged<TextStyle> onTextStyleChanged;
   final ValueChanged<TextAlign> onTextAlignChanged;
   final Color primaryColor;
   final Color secondaryColor;
@@ -17,7 +17,7 @@ class TextStyleEditor extends StatefulWidget {
   final double height;
 
   TextStyleEditor({
-    @required this.onTextStyleChange,
+    @required this.onTextStyleChanged,
     @required this.onTextAlignChanged,
     this.textStyle,
     this.primaryColor = Colors.black26,
@@ -55,19 +55,19 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
   void _onFontFamilyChanged(value) {
     _customTextStyle = value;
 
-    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
+    widget.onTextStyleChanged(CustomTextStyle.to(_customTextStyle));
   }
 
   void _onFontSizeChanged(value) {
     _customTextStyle = value;
 
-    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
+    widget.onTextStyleChanged(CustomTextStyle.to(_customTextStyle));
   }
 
   void _onFontColorChanged(value) {
     _customTextStyle = value;
 
-    widget.onTextStyleChange(CustomTextStyle.to(_customTextStyle));
+    widget.onTextStyleChanged(CustomTextStyle.to(_customTextStyle));
   }
 
   void _changeToolIndex(int index) {

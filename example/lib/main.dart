@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: TextStyleEditor(
                             height: 250,
                             textStyle: textStyle,
-                            onTextStyleChange: (value) {
+                            onTextStyleChanged: (value) {
                               setState(() {
                                 textStyle = value;
                               });

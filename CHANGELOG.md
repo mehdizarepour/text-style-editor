@@ -1,3 +1,8 @@
+## [0.2.0] - 2020-08-11
+
+- Change `onTextStyleChange` method name to `onTextStyleChanged`
+- Update `README` file
+
 ## [0.1.0] - 2020-08-11
 
 - Remove color picker package
