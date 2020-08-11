@@ -1,8 +1,11 @@
 # TextStyleEditor
 
+[![Version](https://img.shields.io/pub/v/text_style_editor.svg)](https://pub.dev/packages/text_style_editor)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+
 Text style editor widget for flutter
 
-Show some ❤️ and star the repo to support the project
+**Show some ❤️ and star the repo to support the project**
 
 ## Features
 
