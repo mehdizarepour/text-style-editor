@@ -1,6 +1,6 @@
 name: text_style_editor
 description: TextSyleEditor is a flutter widget that help you to edit a text style dynamically.
-version: 0.2.0
+version: 0.2.1
 author: Mehdi Zarepour<mehdi.zarepoor@gmail.com>
 homepage: https://github.com/mehdizarepour/text_style_editor
 

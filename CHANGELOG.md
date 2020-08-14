@@ -1,3 +1,8 @@
+## [0.2.1] - 2020-08-14
+
+- Add default font family to `FontFamilyTool`
+- Fix file formats
+
 ## [0.2.0] - 2020-08-11
 
 - Change `onTextStyleChange` method name to `onTextStyleChanged`
