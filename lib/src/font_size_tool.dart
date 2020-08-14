@@ -30,60 +30,61 @@ class _FontSizeToolState extends State<FontSizeTool> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-      children: [
-        /// FontSize slider
-        _SliderValueSelector(
-          minValue: 1,
-          maxValue: 100,
-          defaultValue: widget.defaultTextStyle.fontSize,
-          leftIcon: Icon(Icons.title, size: 15),
-          rightIcon: Icon(Icons.title, size: 25),
-          activeColor: widget.primaryColor,
-          inActiveColor: widget.secondaryColor,
-          onValueChanged: (value) {
-            /// Update font size
-            textStyle.fontSize = value;
+      child: Column(
+        children: [
+          /// FontSize slider
+          _SliderValueSelector(
+            minValue: 1,
+            maxValue: 100,
+            defaultValue: widget.defaultTextStyle.fontSize,
+            leftIcon: Icon(Icons.title, size: 15),
+            rightIcon: Icon(Icons.title, size: 25),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.fontSize = value;
 
-            widget.onTextStyleChanged(textStyle);
-          },
-        ),
+              widget.onTextStyleChanged(textStyle);
+            },
+          ),
 
-        /// LetterSpacing Slider
-        _SliderValueSelector(
-          minValue: 0,
-          maxValue: 100,
-          defaultValue: 0.0,
-          leftIcon: Icon(Icons.settings_ethernet, size: 20),
-          rightIcon: Icon(Icons.settings_ethernet, size: 20),
-          activeColor: widget.primaryColor,
-          inActiveColor: widget.secondaryColor,
-          onValueChanged: (value) {
-            /// Update font size
-            textStyle.letterSpacing = value;
+          /// LetterSpacing Slider
+          _SliderValueSelector(
+            minValue: 0,
+            maxValue: 100,
+            defaultValue: 0.0,
+            leftIcon: Icon(Icons.settings_ethernet, size: 20),
+            rightIcon: Icon(Icons.settings_ethernet, size: 20),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.letterSpacing = value;
 
-            widget.onTextStyleChanged(textStyle);
-          },
-        ),
+              widget.onTextStyleChanged(textStyle);
+            },
+          ),
 
-        /// Text hight slider
-        _SliderValueSelector(
-          minValue: 1,
-          maxValue: 10,
-          defaultValue: 1,
-          leftIcon: Icon(Icons.format_line_spacing, size: 20),
-          rightIcon: Icon(Icons.format_line_spacing, size: 20),
-          activeColor: widget.primaryColor,
-          inActiveColor: widget.secondaryColor,
-          onValueChanged: (value) {
-            /// Update font size
-            textStyle.hight = value;
+          /// Text hight slider
+          _SliderValueSelector(
+            minValue: 1,
+            maxValue: 10,
+            defaultValue: 1,
+            leftIcon: Icon(Icons.format_line_spacing, size: 20),
+            rightIcon: Icon(Icons.format_line_spacing, size: 20),
+            activeColor: widget.primaryColor,
+            inActiveColor: widget.secondaryColor,
+            onValueChanged: (value) {
+              /// Update font size
+              textStyle.hight = value;
 
-            widget.onTextStyleChanged(textStyle);
-          },
-        ),
-      ],
-    ));
+              widget.onTextStyleChanged(textStyle);
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -125,29 +126,30 @@ class _SliderValueSelectorState extends State<_SliderValueSelector> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: 10, right: 10),
-        child: Row(
-          children: [
-            widget.leftIcon,
-            Expanded(
-              child: Slider(
-                value: currentValue,
-                min: widget.minValue,
-                max: widget.maxValue,
-                divisions: widget.maxValue.toInt(),
-                activeColor: widget.activeColor,
-                inactiveColor: widget.inActiveColor,
-                // label: currentValue.round().toString(),
-                onChanged: (double value) {
-                  setState(() {
-                    currentValue = value;
-                    widget.onValueChanged(value);
-                  });
-                },
-              ),
+      margin: EdgeInsets.only(left: 10, right: 10),
+      child: Row(
+        children: [
+          widget.leftIcon,
+          Expanded(
+            child: Slider(
+              value: currentValue,
+              min: widget.minValue,
+              max: widget.maxValue,
+              divisions: widget.maxValue.toInt(),
+              activeColor: widget.activeColor,
+              inactiveColor: widget.inActiveColor,
+              // label: currentValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  currentValue = value;
+                  widget.onValueChanged(value);
+                });
+              },
             ),
-            widget.rightIcon,
-          ],
-        ));
+          ),
+          widget.rightIcon,
+        ],
+      ),
+    );
   }
 }

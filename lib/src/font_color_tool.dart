@@ -24,77 +24,112 @@ class _FontColorToolState extends State<FontColorTool> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 20),
-        child: Column(
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      margin: EdgeInsets.only(top: 20),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               _ColorWidget(
-                  color: Colors.black, onColorSelected: _onColorSelected),
+                color: Colors.black,
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Colors.white, onColorSelected: _onColorSelected),
+                color: Colors.white,
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff112CBC4')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff112CBC4')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xffFDA7DF')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffFDA7DF')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xffED4C67')),
-                  onColorSelected: _onColorSelected),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                color: Color(int.parse('0xffED4C67')),
+                onColorSelected: _onColorSelected,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               _ColorWidget(
-                  color: Color(int.parse('0xffF79F1F')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffF79F1F')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xffA3CB38')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffA3CB38')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff1289A7')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff1289A7')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xffD980FA')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffD980FA')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xffB53471')),
-                  onColorSelected: _onColorSelected),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                color: Color(int.parse('0xffB53471')),
+                onColorSelected: _onColorSelected,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               _ColorWidget(
-                  color: Color(int.parse('0xffEE5A24')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffEE5A24')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff009432')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff009432')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff0652DD')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff0652DD')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff9980FA')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff9980FA')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff833471')),
-                  onColorSelected: _onColorSelected),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                color: Color(int.parse('0xff833471')),
+                onColorSelected: _onColorSelected,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               _ColorWidget(
-                  color: Color(int.parse('0xffEA2027')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xffEA2027')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff006266')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff006266')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff1B1464')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff1B1464')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff5758BB')),
-                  onColorSelected: _onColorSelected),
+                color: Color(int.parse('0xff5758BB')),
+                onColorSelected: _onColorSelected,
+              ),
               _ColorWidget(
-                  color: Color(int.parse('0xff6F1E51')),
-                  onColorSelected: _onColorSelected),
-            ]),
-          ],
-        ));
+                color: Color(int.parse('0xff6F1E51')),
+                onColorSelected: _onColorSelected,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 

@@ -77,8 +77,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
       if (_currentToolIndex == 1) {
         // TODO: Pass selected font to `FontFamilyTool` class
         _currentTool = FontFamilyTool(
-            defaultTextStyle: _customTextStyle,
-            onTextStyleChanged: _onFontFamilyChanged);
+          defaultTextStyle: _customTextStyle,
+          onTextStyleChanged: _onFontFamilyChanged,
+        );
       } else if (_currentToolIndex == 2) {
         _currentTool = FontSizeTool(
           defaultTextStyle: _customTextStyle,
@@ -106,46 +107,57 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
           LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) =>
                 Container(
-                    margin: EdgeInsets.only(
-                        top: 20,
-                        left: constraints.maxWidth * 0.05,
-                        right: constraints.maxWidth * 0.05),
-                    // width: constraints.maxWidth * 0.9,
-                    decoration: BoxDecoration(
-                        color: widget.secondaryColor,
-                        // border: Border.all(color: widget.secondaryColor),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                              icon: Icon(Icons.title,
-                                  color: _currentToolIndex == 1
-                                      ? _activeToolColor
-                                      : _inActiveToolColor),
-                              onPressed: () => _changeToolIndex(1)),
-                          IconButton(
-                              icon: Icon(Icons.tune,
-                                  color: _currentToolIndex == 2
-                                      ? _activeToolColor
-                                      : _inActiveToolColor),
-                              onPressed: () => _changeToolIndex(2)),
-                          TextAlignmentTool(
-                            activeColor: _activeToolColor,
-                            inActiveColor: _inActiveToolColor,
-                            onTextAlignChanged: widget.onTextAlignChanged,
-                          ),
-                          IconButton(
-                              icon: Icon(Icons.palette,
-                                  color: _currentToolIndex == 4
-                                      ? _activeToolColor
-                                      : _inActiveToolColor),
-                              onPressed: () => _changeToolIndex(4)),
-                        ])),
+              margin: EdgeInsets.only(
+                top: 20,
+                left: constraints.maxWidth * 0.05,
+                right: constraints.maxWidth * 0.05,
+              ),
+              // width: constraints.maxWidth * 0.9,
+              decoration: BoxDecoration(
+                color: widget.secondaryColor,
+                // border: Border.all(color: widget.secondaryColor),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.title,
+                      color: _currentToolIndex == 1
+                          ? _activeToolColor
+                          : _inActiveToolColor,
+                    ),
+                    onPressed: () => _changeToolIndex(1),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.tune,
+                      color: _currentToolIndex == 2
+                          ? _activeToolColor
+                          : _inActiveToolColor,
+                    ),
+                    onPressed: () => _changeToolIndex(2),
+                  ),
+                  TextAlignmentTool(
+                    activeColor: _activeToolColor,
+                    inActiveColor: _inActiveToolColor,
+                    onTextAlignChanged: widget.onTextAlignChanged,
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.palette,
+                      color: _currentToolIndex == 4
+                          ? _activeToolColor
+                          : _inActiveToolColor,
+                    ),
+                    onPressed: () => _changeToolIndex(4),
+                  ),
+                ],
+              ),
+            ),
           ),
-          Expanded(
-            child: SingleChildScrollView(child: _currentTool),
-          )
+          Expanded(child: SingleChildScrollView(child: _currentTool)),
         ],
       ),
     );

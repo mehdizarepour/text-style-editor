@@ -34,7 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    textStyle = TextStyle(fontSize: 25, color: Colors.black);
+    textStyle =
+        TextStyle(fontSize: 25, color: Colors.black, fontFamily: 'Billabong');
 
     super.initState();
   }
@@ -43,35 +44,45 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          child: Column(
-        children: <Widget>[
-          Expanded(
+        child: Column(
+          children: <Widget>[
+            Expanded(
               child: Container(
-            padding: EdgeInsets.only(top: 200),
-            width: 500,
-            child: Text('Sample text', style: textStyle, textAlign: textAlign),
-          )),
-          Expanded(
+                padding: EdgeInsets.only(top: 350),
+                width: 500,
+                child: Text(
+                  'Sample text',
+                  style: textStyle,
+                  textAlign: textAlign,
+                ),
+              ),
+            ),
+            Expanded(
               child: SafeArea(
-                  child: Container(
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: TextStyleEditor(
-                            height: 250,
-                            textStyle: textStyle,
-                            onTextStyleChanged: (value) {
-                              setState(() {
-                                textStyle = value;
-                              });
-                            },
-                            onTextAlignChanged: (value) {
-                              setState(() {
-                                textAlign = value;
-                              });
-                            },
-                          )))))
-        ],
-      )),
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: TextStyleEditor(
+                      height: 250,
+                      textStyle: textStyle,
+                      onTextStyleChanged: (value) {
+                        setState(() {
+                          textStyle = value;
+                        });
+                      },
+                      onTextAlignChanged: (value) {
+                        setState(() {
+                          textAlign = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

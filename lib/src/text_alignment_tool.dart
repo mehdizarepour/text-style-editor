@@ -6,11 +6,12 @@ class TextAlignmentTool extends StatefulWidget {
   final Color inActiveColor;
   final ValueChanged<TextAlign> onTextAlignChanged;
 
-  TextAlignmentTool(
-      {@required this.onTextAlignChanged,
-      this.textAlign,
-      this.activeColor,
-      this.inActiveColor});
+  TextAlignmentTool({
+    @required this.onTextAlignChanged,
+    this.textAlign,
+    this.activeColor,
+    this.inActiveColor,
+  });
 
   @override
   _TextAlignmentToolState createState() => _TextAlignmentToolState();
