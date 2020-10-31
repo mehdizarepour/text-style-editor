@@ -39,7 +39,7 @@ fonts:
       - asset: packages/text_style_editor/fonts/Billabong.ttf
 ```
 
-To see the list of all suported fonts, [click here](https://github.com/mehdizarepour/text_style_editor/tree/master/lib/fonts)
+To see the list of all supported fonts, [click here](https://github.com/mehdizarepour/text_style_editor/tree/master/lib/fonts)
 
 ## How to use
 
