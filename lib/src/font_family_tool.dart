@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_style_editor/src/option_button.dart';
 
 class FontFamilyTool extends StatefulWidget {
   final List<String> fonts;
@@ -54,15 +55,11 @@ class _FontFamily extends StatelessWidget {
   _FontFamily(this.font, {required this.onSelect, this.isSelected = false});
   @override
   Widget build(BuildContext context) {
-    return RawMaterialButton(
-      constraints: BoxConstraints.tight(Size(90, 45)),
-      fillColor: isSelected ? Colors.grey : null,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(),
-      ),
-      child: Center(child: Text(font, style: TextStyle(fontFamily: font))),
+    return OptionButton(
+      isActive: isSelected,
+      size: Size(90, 45),
       onPressed: () => onSelect(font),
+      child: Center(child: Text(font, style: TextStyle(fontFamily: font))),
     );
   }
 }
