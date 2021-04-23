@@ -96,7 +96,7 @@ class _ToolbarItem extends StatelessWidget {
       height: 45,
       decoration: BoxDecoration(
         color: isActive ? Colors.grey : null,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         border: Border.fromBorderSide(BorderSide()),
       ),
       child: Center(child: IconButton(icon: Icon(icon), onPressed: onTap)),
