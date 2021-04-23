@@ -62,20 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: TextStyleEditor(
-                      height: 250,
-                      textStyle: textStyle,
-                      onTextStyleChanged: (value) {
-                        setState(() {
-                          textStyle = value;
-                        });
-                      },
-                      onTextAlignChanged: (value) {
-                        setState(() {
-                          textAlign = value;
-                        });
-                      },
-                    ),
+                    child: TextStyleEditor(),
                   ),
                 ),
               ),
