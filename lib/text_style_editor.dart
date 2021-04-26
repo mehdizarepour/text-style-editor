@@ -48,7 +48,13 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                     onTextAlignEdited: (align) {},
                   );
                 case ToolbarAction.fontSize:
-                  return FontSizeTool();
+                  return FontSizeTool(
+                    onFontSizeEdited: (
+                      fontSize,
+                      letterSpacing,
+                      letterHeight,
+                    ) {},
+                  );
                 default:
                   return Container();
               }

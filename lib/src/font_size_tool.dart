@@ -1,54 +1,55 @@
 import 'package:flutter/material.dart';
 
-class FontSizeTool extends StatefulWidget {
+class FontSizeTool extends StatelessWidget {
   final double fontSize;
   final double letterSpacing;
   final double letterHeight;
+  final Function(
+    double fontSize,
+    double letterSpacing,
+    double letterHeight,
+  ) onFontSizeEdited;
 
   FontSizeTool({
+    required this.onFontSizeEdited,
     this.fontSize = 0,
     this.letterSpacing = 0,
     this.letterHeight = 0,
   });
 
   @override
-  _FontSizeToolState createState() => _FontSizeToolState();
-}
-
-class _FontSizeToolState extends State<FontSizeTool> {
-  late double _fontSize;
-  late double _letterSpacing;
-  late double _letterHeight;
-
-  @override
-  void initState() {
-    _fontSize = widget.fontSize;
-    _letterSpacing = widget.letterSpacing;
-    _letterHeight = widget.letterHeight;
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    double _fontSize = fontSize;
+    double _letterSpacing = letterSpacing;
+    double _letterHeight = letterHeight;
+
     return Padding(
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          _ReSizeSlider(
+          _ResizeSlider(
             value: _fontSize,
             icon: Icons.format_size,
-            onChange: (value) => setState(() => _fontSize = value),
+            onChange: (value) {
+              _fontSize = value;
+              onFontSizeEdited(_fontSize, _letterSpacing, _letterHeight);
+            },
           ),
-          _ReSizeSlider(
+          _ResizeSlider(
             value: _letterHeight,
             icon: Icons.format_line_spacing,
-            onChange: (value) => setState(() => _letterHeight = value),
+            onChange: (value) {
+              _letterHeight = value;
+              onFontSizeEdited(_fontSize, _letterSpacing, _letterHeight);
+            },
           ),
-          _ReSizeSlider(
+          _ResizeSlider(
             value: _letterSpacing,
             icon: Icons.settings_ethernet,
-            onChange: (value) => setState(() => _letterSpacing = value),
+            onChange: (value) {
+              _letterSpacing = value;
+              onFontSizeEdited(_fontSize, _letterSpacing, _letterHeight);
+            },
           ),
         ],
       ),
@@ -56,30 +57,49 @@ class _FontSizeToolState extends State<FontSizeTool> {
   }
 }
 
-class _ReSizeSlider extends StatelessWidget {
+class _ResizeSlider extends StatefulWidget {
   final double value;
   final IconData icon;
   final Function(double) onChange;
 
-  _ReSizeSlider({
+  _ResizeSlider({
     required this.value,
     required this.icon,
     required this.onChange,
   });
+
+  @override
+  _ResizeSliderState createState() => _ResizeSliderState();
+}
+
+class _ResizeSliderState extends State<_ResizeSlider> {
+  late double _value;
+
+  @override
+  void initState() {
+    _value = widget.value;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon),
+        Icon(widget.icon),
         Expanded(
           child: Slider(
-            value: value,
-            onChanged: onChange,
+            value: _value,
+            onChanged: (value) {
+              setState(() => _value = value);
+
+              widget.onChange(value);
+            },
             min: 0,
             max: 100,
           ),
         ),
-        Text(value.toInt().toString()),
+        Text(_value.toInt().toString()),
       ],
     );
   }
