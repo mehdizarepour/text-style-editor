@@ -2,6 +2,7 @@ library text_style_editor;
 
 import 'package:flutter/material.dart';
 
+import 'src/color_palette.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
 import 'src/text_format_tool.dart';
@@ -54,6 +55,20 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       letterSpacing,
                       letterHeight,
                     ) {},
+                  );
+                case ToolbarAction.fontColor:
+                  return ColorPalette(
+                    activeColor: Colors.green,
+                    colors: [
+                      Colors.red,
+                      Colors.blue,
+                      Colors.blueAccent,
+                      Colors.brown,
+                      Colors.green,
+                      Colors.indigoAccent,
+                      Colors.lime,
+                    ],
+                    onColorPicked: (color) {},
                   );
                 default:
                   return Container();
