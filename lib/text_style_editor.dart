@@ -3,6 +3,7 @@ library text_style_editor;
 import 'package:flutter/material.dart';
 
 import 'src/font_family_tool.dart';
+import 'src/font_size_tool.dart';
 import 'src/text_format_tool.dart';
 import 'src/toolbar.dart';
 
@@ -46,6 +47,8 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                     onTextFormatEdited: (bold, italic, caps) {},
                     onTextAlignEdited: (align) {},
                   );
+                case ToolbarAction.fontSize:
+                  return FontSizeTool();
                 default:
                   return Container();
               }
