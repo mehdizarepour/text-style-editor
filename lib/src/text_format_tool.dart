@@ -2,27 +2,26 @@ import 'package:flutter/material.dart';
 
 import 'option_button.dart';
 
-class TextFormatTool extends StatefulWidget {
-  final TextAlign? textAlign;
-  final TextStyle? textStyle;
+class TextFormatTool extends StatelessWidget {
+  final Function(
+    bool bold,
+    bool italic,
+    bool caps,
+  ) onTextFormatEdited;
+  final Function(TextAlign textAlign) onTextAlignEdited;
+  final TextAlign textAlign;
+  final bool bold;
+  final bool italic;
+  final bool caps;
 
-  TextFormatTool({this.textAlign, this.textStyle});
-
-  @override
-  _TextFormatToolState createState() => _TextFormatToolState();
-}
-
-class _TextFormatToolState extends State<TextFormatTool> {
-  late TextAlign _textAlign;
-  late TextStyle _textStyle;
-
-  @override
-  void initState() {
-    _textAlign = widget.textAlign ?? TextAlign.left;
-    _textStyle = widget.textStyle ?? TextStyle();
-
-    super.initState();
-  }
+  TextFormatTool({
+    required this.onTextFormatEdited,
+    required this.onTextAlignEdited,
+    this.textAlign = TextAlign.left,
+    this.bold = false,
+    this.italic = false,
+    this.caps = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +31,15 @@ class _TextFormatToolState extends State<TextFormatTool> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _TextFormatEditor(
-            onFormatEdited: (bold, italic, caps) {},
+            bold: bold,
+            italic: italic,
+            caps: caps,
+            onFormatEdited: onTextFormatEdited,
           ),
           SizedBox(height: 36),
           _TextAlignEditor(
-            onTextAlignEdited: (align) {},
+            textAlign: textAlign,
+            onTextAlignEdited: onTextAlignEdited,
           ),
         ],
       ),

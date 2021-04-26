@@ -17,7 +17,10 @@ class TextStyleEditor extends StatelessWidget {
         Divider(),
         Expanded(
           child: SingleChildScrollView(
-            child: TextFormatTool(),
+            child: TextFormatTool(
+              onTextFormatEdited: (bold, italic, caps) {},
+              onTextAlignEdited: (align) {},
+            ),
             // child: FontFamilyTool(
             //   fonts: [
             //     'Font1',
