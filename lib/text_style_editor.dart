@@ -45,8 +45,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                   );
                 case ToolbarAction.strikethrough:
                   return TextFormatTool(
-                    onTextFormatEdited: (bold, italic, caps) {},
+                    onTextFormatEdited: (bold, italic) {},
                     onTextAlignEdited: (align) {},
+                    onCpasLockTaggle: (caps) {},
                   );
                 case ToolbarAction.fontSize:
                   return FontSizeTool(

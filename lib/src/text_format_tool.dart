@@ -6,8 +6,8 @@ class TextFormatTool extends StatelessWidget {
   final Function(
     bool bold,
     bool italic,
-    bool caps,
   ) onTextFormatEdited;
+  final Function(bool caps) onCpasLockTaggle;
   final Function(TextAlign textAlign) onTextAlignEdited;
   final TextAlign textAlign;
   final bool bold;
@@ -17,6 +17,7 @@ class TextFormatTool extends StatelessWidget {
   TextFormatTool({
     required this.onTextFormatEdited,
     required this.onTextAlignEdited,
+    required this.onCpasLockTaggle,
     this.textAlign = TextAlign.left,
     this.bold = false,
     this.italic = false,
@@ -35,6 +36,7 @@ class TextFormatTool extends StatelessWidget {
             italic: italic,
             caps: caps,
             onFormatEdited: onTextFormatEdited,
+            onCpasLockTaggle: onCpasLockTaggle,
           ),
           SizedBox(height: 36),
           _TextAlignEditor(
@@ -131,17 +133,15 @@ class _TextAlignOption extends StatelessWidget {
 }
 
 class _TextFormatEditor extends StatefulWidget {
-  final Function(
-    bool bold,
-    bool italic,
-    bool caps,
-  ) onFormatEdited;
+  final Function(bool bold, bool italic) onFormatEdited;
+  final Function(bool caps) onCpasLockTaggle;
   final bool bold;
   final bool italic;
   final bool caps;
 
   _TextFormatEditor({
     required this.onFormatEdited,
+    required this.onCpasLockTaggle,
     this.bold = false,
     this.italic = false,
     this.caps = false,
@@ -176,7 +176,7 @@ class _TextFormatEditorState extends State<_TextFormatEditor> {
           isActive: _bold,
           onPressed: () {
             setState(() => _bold = !_bold);
-            widget.onFormatEdited(_bold, _italic, _caps);
+            widget.onFormatEdited(_bold, _italic);
           },
         ),
         _TextFormatOption(
@@ -185,7 +185,7 @@ class _TextFormatEditorState extends State<_TextFormatEditor> {
           isActive: _italic,
           onPressed: () {
             setState(() => _italic = !_italic);
-            widget.onFormatEdited(_bold, _italic, _caps);
+            widget.onFormatEdited(_bold, _italic);
           },
         ),
         _TextFormatOption(
@@ -194,7 +194,7 @@ class _TextFormatEditorState extends State<_TextFormatEditor> {
           isActive: _caps,
           onPressed: () {
             setState(() => _caps = !_caps);
-            widget.onFormatEdited(_bold, _italic, _caps);
+            widget.onCpasLockTaggle(_caps);
           },
         ),
       ],
