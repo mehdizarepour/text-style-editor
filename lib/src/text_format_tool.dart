@@ -31,7 +31,9 @@ class _TextFormatToolState extends State<TextFormatTool> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _TextFormatEditor(),
+          _TextFormatEditor(
+            onFormatEdited: (bold, italic, caps) {},
+          ),
           SizedBox(height: 36),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,11 +75,17 @@ class _TextAlignOption extends StatelessWidget {
 }
 
 class _TextFormatEditor extends StatefulWidget {
+  final Function(
+    bool bold,
+    bool italic,
+    bool caps,
+  ) onFormatEdited;
   final bool bold;
   final bool italic;
   final bool caps;
 
   _TextFormatEditor({
+    required this.onFormatEdited,
     this.bold = false,
     this.italic = false,
     this.caps = false,
@@ -110,17 +118,28 @@ class _TextFormatEditorState extends State<_TextFormatEditor> {
           title: 'BOLD',
           icon: Icons.format_bold,
           isActive: _bold,
-          onPressed: () => setState(() => _bold = !_bold),
+          onPressed: () {
+            setState(() => _bold = !_bold);
+            widget.onFormatEdited(_bold, _italic, _caps);
+          },
         ),
         _TextFormatOption(
           title: 'ITALIC',
           icon: Icons.format_italic,
-          onPressed: () => setState(() => _italic = !_italic),
+          isActive: _italic,
+          onPressed: () {
+            setState(() => _italic = !_italic);
+            widget.onFormatEdited(_bold, _italic, _caps);
+          },
         ),
         _TextFormatOption(
           title: 'CAPS',
           icon: Icons.keyboard_capslock,
-          onPressed: () => setState(() => _caps = !_caps),
+          isActive: _caps,
+          onPressed: () {
+            setState(() => _caps = !_caps);
+            widget.onFormatEdited(_bold, _italic, _caps);
+          },
         ),
       ],
     );
