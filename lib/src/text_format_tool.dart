@@ -35,20 +35,72 @@ class _TextFormatToolState extends State<TextFormatTool> {
             onFormatEdited: (bold, italic, caps) {},
           ),
           SizedBox(height: 36),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _TextAlignOption(icon: Icons.format_align_left, onPressed: () {}),
-              _TextAlignOption(
-                  icon: Icons.format_align_center, onPressed: () {}),
-              _TextAlignOption(
-                  icon: Icons.format_align_right, onPressed: () {}),
-              _TextAlignOption(
-                  icon: Icons.format_align_justify, onPressed: () {}),
-            ],
-          )
+          _TextAlignEditor(
+            onTextAlignEdited: (align) {},
+          ),
         ],
       ),
+    );
+  }
+}
+
+class _TextAlignEditor extends StatefulWidget {
+  final TextAlign textAlign;
+  final Function(TextAlign textAlign) onTextAlignEdited;
+
+  _TextAlignEditor({
+    required this.onTextAlignEdited,
+    this.textAlign = TextAlign.left,
+  });
+
+  @override
+  _TextAlignEditorState createState() => _TextAlignEditorState();
+}
+
+class _TextAlignEditorState extends State<_TextAlignEditor> {
+  late TextAlign _textAlign;
+
+  @override
+  void initState() {
+    _textAlign = widget.textAlign;
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _TextAlignOption(
+          icon: Icons.format_align_left,
+          isActive: _textAlign == TextAlign.left,
+          onPressed: () {
+            setState(() => _textAlign = TextAlign.left);
+          },
+        ),
+        _TextAlignOption(
+          icon: Icons.format_align_center,
+          isActive: _textAlign == TextAlign.center,
+          onPressed: () {
+            setState(() => _textAlign = TextAlign.center);
+          },
+        ),
+        _TextAlignOption(
+          icon: Icons.format_align_right,
+          isActive: _textAlign == TextAlign.right,
+          onPressed: () {
+            setState(() => _textAlign = TextAlign.right);
+          },
+        ),
+        _TextAlignOption(
+          icon: Icons.format_align_justify,
+          isActive: _textAlign == TextAlign.justify,
+          onPressed: () {
+            setState(() => _textAlign = TextAlign.justify);
+          },
+        ),
+      ],
     );
   }
 }
@@ -69,7 +121,8 @@ class _TextAlignOption extends StatelessWidget {
     return IconButton(
       iconSize: 32,
       icon: Icon(icon),
-      onPressed: () {},
+      color: isActive ? Colors.grey : null,
+      onPressed: onPressed,
     );
   }
 }
