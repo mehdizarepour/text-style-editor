@@ -3,11 +3,27 @@ import 'package:flutter/material.dart';
 import 'option_button.dart';
 
 class TextFormatTool extends StatefulWidget {
+  final TextAlign? textAlign;
+  final TextStyle? textStyle;
+
+  TextFormatTool({this.textAlign, this.textStyle});
+
   @override
   _TextFormatToolState createState() => _TextFormatToolState();
 }
 
 class _TextFormatToolState extends State<TextFormatTool> {
+  late TextAlign _textAlign;
+  late TextStyle _textStyle;
+
+  @override
+  void initState() {
+    _textAlign = widget.textAlign ?? TextAlign.left;
+    _textStyle = widget.textStyle ?? TextStyle();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,26 +31,7 @@ class _TextFormatToolState extends State<TextFormatTool> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _TextFormatOption(
-                title: 'BOLD',
-                icon: Icons.format_bold,
-                onPressed: () {},
-              ),
-              _TextFormatOption(
-                title: 'ITALIC',
-                icon: Icons.format_italic,
-                onPressed: () {},
-              ),
-              _TextFormatOption(
-                title: 'CAPS',
-                icon: Icons.keyboard_capslock,
-                onPressed: () {},
-              ),
-            ],
-          ),
+          _TextFormatEditor(),
           SizedBox(height: 36),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,6 +72,61 @@ class _TextAlignOption extends StatelessWidget {
   }
 }
 
+class _TextFormatEditor extends StatefulWidget {
+  final bool bold;
+  final bool italic;
+  final bool caps;
+
+  _TextFormatEditor({
+    this.bold = false,
+    this.italic = false,
+    this.caps = false,
+  });
+
+  @override
+  _TextFormatEditorState createState() => _TextFormatEditorState();
+}
+
+class _TextFormatEditorState extends State<_TextFormatEditor> {
+  late bool _bold;
+  late bool _italic;
+  late bool _caps;
+
+  @override
+  void initState() {
+    _bold = widget.bold;
+    _italic = widget.italic;
+    _caps = widget.caps;
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _TextFormatOption(
+          title: 'BOLD',
+          icon: Icons.format_bold,
+          isActive: _bold,
+          onPressed: () => setState(() => _bold = !_bold),
+        ),
+        _TextFormatOption(
+          title: 'ITALIC',
+          icon: Icons.format_italic,
+          onPressed: () => setState(() => _italic = !_italic),
+        ),
+        _TextFormatOption(
+          title: 'CAPS',
+          icon: Icons.keyboard_capslock,
+          onPressed: () => setState(() => _caps = !_caps),
+        ),
+      ],
+    );
+  }
+}
+
 class _TextFormatOption extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -92,7 +144,8 @@ class _TextFormatOption extends StatelessWidget {
     return Column(
       children: [
         OptionButton(
-          onPressed: () {},
+          isActive: isActive,
+          onPressed: onPressed,
           child: Icon(icon),
         ),
         SizedBox(height: 12),
