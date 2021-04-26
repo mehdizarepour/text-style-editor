@@ -70,6 +70,22 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                     ],
                     onColorPicked: (color) {},
                   );
+                case ToolbarAction.backgroundColor:
+                  return ColorPalette(
+                    activeColor: Colors.green,
+                    colors: [
+                      Colors.red,
+                      Colors.blue,
+                      Colors.blueAccent,
+                      Colors.brown,
+                      Colors.green,
+                      Colors.indigoAccent,
+                      Colors.lime,
+                    ],
+                    onColorPicked: (color) {},
+                  );
+                case ToolbarAction.editing:
+                  return Container();
                 default:
                   return Container();
               }
