@@ -11,21 +11,21 @@ import 'src/toolbar.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final List<String> fonts;
-  final List<Color>? paletteColors;
   final TextStyle textStyle;
   final TextAlign textAlign;
-  final Function(TextStyle) onTextStyleEdited;
-  final Function(TextAlign) onTextAlignEdited;
-  final Function(bool) onCpasLockTaggle;
+  final List<Color>? paletteColors;
+  final Function(TextStyle)? onTextStyleEdited;
+  final Function(TextAlign)? onTextAlignEdited;
+  final Function(bool)? onCpasLockTaggle;
 
   TextStyleEditor({
     required this.fonts,
-    this.paletteColors,
     required this.textStyle,
     required this.textAlign,
-    required this.onTextStyleEdited,
-    required this.onTextAlignEdited,
-    required this.onCpasLockTaggle,
+    this.paletteColors,
+    this.onTextStyleEdited,
+    this.onTextAlignEdited,
+    this.onCpasLockTaggle,
   });
 
   @override
@@ -81,7 +81,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       setState(() => _textStyle =
                           _textStyle.copyWith(fontFamily: fontFamily));
 
-                      widget.onTextStyleEdited(_textStyle);
+                      if (widget.onTextStyleEdited != null) {
+                        widget.onTextStyleEdited!(_textStyle);
+                      }
                     },
                   );
                 case ToolbarAction.strikethrough:
@@ -97,14 +99,22 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                                 italic ? FontStyle.italic : FontStyle.normal,
                           ));
 
-                      widget.onTextStyleEdited(_textStyle);
+                      if (widget.onTextStyleEdited != null) {
+                        widget.onTextStyleEdited!(_textStyle);
+                      }
                     },
                     onTextAlignEdited: (align) {
                       setState(() => _textAlign = align);
 
-                      widget.onTextAlignEdited(align);
+                      if (widget.onTextAlignEdited != null) {
+                        widget.onTextAlignEdited!(align);
+                      }
                     },
-                    onCpasLockTaggle: widget.onCpasLockTaggle,
+                    onCpasLockTaggle: (caps) {
+                      if (widget.onCpasLockTaggle != null) {
+                        widget.onCpasLockTaggle!(caps);
+                      }
+                    },
                   );
                 case ToolbarAction.fontSize:
                   return FontSizeTool(
@@ -122,7 +132,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                             letterSpacing: letterSpacing,
                           ));
 
-                      widget.onTextStyleEdited(_textStyle);
+                      if (widget.onTextStyleEdited != null) {
+                        widget.onTextStyleEdited!(_textStyle);
+                      }
                     },
                   );
                 case ToolbarAction.fontColor:
@@ -133,7 +145,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       setState(
                           () => _textStyle = _textStyle.copyWith(color: color));
 
-                      widget.onTextStyleEdited(_textStyle);
+                      if (widget.onTextStyleEdited != null) {
+                        widget.onTextStyleEdited!(_textStyle);
+                      }
                     },
                   );
                 case ToolbarAction.backgroundColor:
@@ -144,7 +158,9 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       setState(() => _textStyle =
                           _textStyle.copyWith(backgroundColor: color));
 
-                      widget.onTextStyleEdited(_textStyle);
+                      if (widget.onTextStyleEdited != null) {
+                        widget.onTextStyleEdited!(_textStyle);
+                      }
                     },
                   );
                 case ToolbarAction.editing:
