@@ -3,6 +3,7 @@ library text_style_editor;
 import 'package:flutter/material.dart';
 
 import 'src/color_palette.dart';
+import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
 import 'src/text_format_tool.dart';
@@ -108,9 +109,11 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                     },
                   );
                 case ToolbarAction.fontColor:
-                  return ColorPalette(
-                    activeColor: Colors.green,
+                  return FontColorTool(
+                    activeColor: _textStyle.color,
                     colors: [
+                      Colors.black,
+                      Colors.white,
                       Colors.red,
                       Colors.blue,
                       Colors.blueAccent,
@@ -119,12 +122,19 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       Colors.indigoAccent,
                       Colors.lime,
                     ],
-                    onColorPicked: (color) {},
+                    onColorPicked: (color) {
+                      setState(
+                          () => _textStyle = _textStyle.copyWith(color: color));
+
+                      widget.onTextStyleEdited(_textStyle);
+                    },
                   );
                 case ToolbarAction.backgroundColor:
                   return ColorPalette(
-                    activeColor: Colors.green,
+                    activeColor: _textStyle.backgroundColor,
                     colors: [
+                      Colors.black,
+                      Colors.white,
                       Colors.red,
                       Colors.blue,
                       Colors.blueAccent,
@@ -133,7 +143,12 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       Colors.indigoAccent,
                       Colors.lime,
                     ],
-                    onColorPicked: (color) {},
+                    onColorPicked: (color) {
+                      setState(() => _textStyle =
+                          _textStyle.copyWith(backgroundColor: color));
+
+                      widget.onTextStyleEdited(_textStyle);
+                    },
                   );
                 case ToolbarAction.editing:
                   return Container();
