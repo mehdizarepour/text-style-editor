@@ -66,13 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Container(
-                padding: EdgeInsets.only(top: 350),
-                width: 500,
+              child: Align(
+                alignment: Alignment.center,
                 child: Text(
-                  'Sample text',
+                  'Lorem ipsum dolor sit amet',
                   style: textStyle,
                   textAlign: textAlign,
+                  maxLines: 10,
                 ),
               ),
             ),

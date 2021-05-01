@@ -90,11 +90,22 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                   );
                 case ToolbarAction.fontSize:
                   return FontSizeTool(
+                    fontSize: _textStyle.fontSize ?? 0,
+                    letterHeight: _textStyle.height ?? 1.2,
+                    letterSpacing: _textStyle.letterSpacing ?? 1,
                     onFontSizeEdited: (
                       fontSize,
                       letterSpacing,
                       letterHeight,
-                    ) {},
+                    ) {
+                      setState(() => _textStyle = _textStyle.copyWith(
+                            fontSize: fontSize,
+                            height: letterHeight,
+                            letterSpacing: letterSpacing,
+                          ));
+
+                      widget.onTextStyleEdited(_textStyle);
+                    },
                   );
                 case ToolbarAction.fontColor:
                   return ColorPalette(

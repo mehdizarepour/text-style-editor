@@ -38,6 +38,7 @@ class FontSizeTool extends StatelessWidget {
           _ResizeSlider(
             value: _letterHeight,
             icon: Icons.format_line_spacing,
+            max: 10,
             onChange: (value) {
               _letterHeight = value;
               onFontSizeEdited(_fontSize, _letterSpacing, _letterHeight);
@@ -46,6 +47,7 @@ class FontSizeTool extends StatelessWidget {
           _ResizeSlider(
             value: _letterSpacing,
             icon: Icons.settings_ethernet,
+            max: 10,
             onChange: (value) {
               _letterSpacing = value;
               onFontSizeEdited(_fontSize, _letterSpacing, _letterHeight);
@@ -59,6 +61,8 @@ class FontSizeTool extends StatelessWidget {
 
 class _ResizeSlider extends StatefulWidget {
   final double value;
+  final double? min;
+  final double? max;
   final IconData icon;
   final Function(double) onChange;
 
@@ -66,6 +70,8 @@ class _ResizeSlider extends StatefulWidget {
     required this.value,
     required this.icon,
     required this.onChange,
+    this.min = 0,
+    this.max = 100,
   });
 
   @override
@@ -95,11 +101,11 @@ class _ResizeSliderState extends State<_ResizeSlider> {
 
               widget.onChange(value);
             },
-            min: 0,
-            max: 100,
+            min: widget.min!,
+            max: widget.max!,
           ),
         ),
-        Text(_value.toInt().toString()),
+        Text(_value.toStringAsFixed(1)),
       ],
     );
   }
