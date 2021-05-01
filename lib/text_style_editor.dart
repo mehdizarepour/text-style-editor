@@ -2,11 +2,11 @@ library text_style_editor;
 
 import 'package:flutter/material.dart';
 
-import 'src/background_color_tool.dart';
+import 'src/tools/background_color_tool.dart';
 import 'src/color_palette.dart';
-import 'src/font_family_tool.dart';
-import 'src/font_size_tool.dart';
-import 'src/text_format_tool.dart';
+import 'src/tools/font_family_tool.dart';
+import 'src/tools/font_size_tool.dart';
+import 'src/tools/text_format_tool.dart';
 import 'src/toolbar.dart';
 
 class TextStyleEditor extends StatefulWidget {

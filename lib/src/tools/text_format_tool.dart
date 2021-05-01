@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'option_button.dart';
+import '../option_button.dart';
 
 class TextFormatTool extends StatelessWidget {
   final Function(
