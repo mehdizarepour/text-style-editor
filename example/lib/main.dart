@@ -29,6 +29,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<String> fonts = [
+    'Billabong',
+    'AlexBrush',
+    'Allura',
+    'Arizonia',
+    'ChunkFive',
+    'GrandHotel',
+    'GreatVibes',
+    'Lobster',
+    'OpenSans',
+    'OstrichSans',
+    'Oswald',
+    'Pacifico',
+    'Quicksand',
+    'Roboto',
+    'SEASRN',
+    'Windsong',
+  ];
   TextStyle textStyle;
   TextAlign textAlign;
 
@@ -62,7 +80,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: TextStyleEditor(),
+                    child: TextStyleEditor(
+                      fonts: fonts,
+                      textStyle: textStyle,
+                      textAlign: textAlign,
+                      onTextStyleEdited: (style) {
+                        setState(() {
+                          textStyle = textStyle.merge(style);
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),

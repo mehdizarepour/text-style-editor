@@ -9,12 +9,32 @@ import 'src/text_format_tool.dart';
 import 'src/toolbar.dart';
 
 class TextStyleEditor extends StatefulWidget {
+  final List<String> fonts;
+  final TextStyle textStyle;
+  final TextAlign textAlign;
+  final Function(TextStyle) onTextStyleEdited;
+
+  TextStyleEditor({
+    required this.fonts,
+    required this.textStyle,
+    required this.textAlign,
+    required this.onTextStyleEdited,
+  });
+
   @override
   _TextStyleEditorState createState() => _TextStyleEditorState();
 }
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
   ToolbarAction _currentTool = ToolbarAction.editing;
+  late TextStyle _textStyle;
+
+  @override
+  void initState() {
+    _textStyle = widget.textStyle;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +51,13 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
               switch (_currentTool) {
                 case ToolbarAction.fontFamily:
                   return FontFamilyTool(
-                    fonts: [
-                      'Font1',
-                      'Font2',
-                      'Font3',
-                      'Font4',
-                      'Font5',
-                      'Font6',
-                      'Font7',
-                      'Font8'
-                    ],
-                    onSelectFont: (fontFamily) {},
+                    fonts: widget.fonts,
+                    onSelectFont: (fontFamily) {
+                      setState(() => _textStyle =
+                          _textStyle.copyWith(fontFamily: fontFamily));
+
+                      widget.onTextStyleEdited(_textStyle);
+                    },
                   );
                 case ToolbarAction.strikethrough:
                   return TextFormatTool(
