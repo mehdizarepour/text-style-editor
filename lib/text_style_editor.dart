@@ -2,6 +2,7 @@ library text_style_editor;
 
 import 'package:flutter/material.dart';
 
+import 'src/background_color_tool.dart';
 import 'src/color_palette.dart';
 import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
@@ -109,7 +110,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                     },
                   );
                 case ToolbarAction.fontColor:
-                  return FontColorTool(
+                  return BackgroundColorTool(
                     activeColor: _textStyle.color,
                     colors: [
                       Colors.black,
