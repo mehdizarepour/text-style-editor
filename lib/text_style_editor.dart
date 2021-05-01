@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'src/background_color_tool.dart';
 import 'src/color_palette.dart';
-import 'src/font_color_tool.dart';
 import 'src/font_family_tool.dart';
 import 'src/font_size_tool.dart';
 import 'src/text_format_tool.dart';
@@ -12,6 +11,7 @@ import 'src/toolbar.dart';
 
 class TextStyleEditor extends StatefulWidget {
   final List<String> fonts;
+  final List<Color>? paletteColors;
   final TextStyle textStyle;
   final TextAlign textAlign;
   final Function(TextStyle) onTextStyleEdited;
@@ -20,6 +20,7 @@ class TextStyleEditor extends StatefulWidget {
 
   TextStyleEditor({
     required this.fonts,
+    this.paletteColors,
     required this.textStyle,
     required this.textAlign,
     required this.onTextStyleEdited,
@@ -35,11 +36,26 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
   ToolbarAction _currentTool = ToolbarAction.editing;
   late TextStyle _textStyle;
   late TextAlign _textAlign;
+  late List<Color> _paletteColors;
 
   @override
   void initState() {
     _textStyle = widget.textStyle;
     _textAlign = widget.textAlign;
+
+    // Set default palette's colors
+    _paletteColors = widget.paletteColors ??
+        [
+          Colors.black,
+          Colors.white,
+          Colors.red,
+          Colors.blue,
+          Colors.blueAccent,
+          Colors.brown,
+          Colors.green,
+          Colors.indigoAccent,
+          Colors.lime,
+        ];
 
     super.initState();
   }
@@ -112,17 +128,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 case ToolbarAction.fontColor:
                   return BackgroundColorTool(
                     activeColor: _textStyle.color,
-                    colors: [
-                      Colors.black,
-                      Colors.white,
-                      Colors.red,
-                      Colors.blue,
-                      Colors.blueAccent,
-                      Colors.brown,
-                      Colors.green,
-                      Colors.indigoAccent,
-                      Colors.lime,
-                    ],
+                    colors: _paletteColors,
                     onColorPicked: (color) {
                       setState(
                           () => _textStyle = _textStyle.copyWith(color: color));
@@ -133,17 +139,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 case ToolbarAction.backgroundColor:
                   return ColorPalette(
                     activeColor: _textStyle.backgroundColor,
-                    colors: [
-                      Colors.black,
-                      Colors.white,
-                      Colors.red,
-                      Colors.blue,
-                      Colors.blueAccent,
-                      Colors.brown,
-                      Colors.green,
-                      Colors.indigoAccent,
-                      Colors.lime,
-                    ],
+                    colors: _paletteColors,
                     onColorPicked: (color) {
                       setState(() => _textStyle =
                           _textStyle.copyWith(backgroundColor: color));
