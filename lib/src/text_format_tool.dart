@@ -82,6 +82,7 @@ class _TextAlignEditorState extends State<_TextAlignEditor> {
           isActive: _textAlign == TextAlign.left,
           onPressed: () {
             setState(() => _textAlign = TextAlign.left);
+            widget.onTextAlignEdited(_textAlign);
           },
         ),
         _TextAlignOption(
@@ -89,6 +90,7 @@ class _TextAlignEditorState extends State<_TextAlignEditor> {
           isActive: _textAlign == TextAlign.center,
           onPressed: () {
             setState(() => _textAlign = TextAlign.center);
+            widget.onTextAlignEdited(_textAlign);
           },
         ),
         _TextAlignOption(
@@ -96,6 +98,7 @@ class _TextAlignEditorState extends State<_TextAlignEditor> {
           isActive: _textAlign == TextAlign.right,
           onPressed: () {
             setState(() => _textAlign = TextAlign.right);
+            widget.onTextAlignEdited(_textAlign);
           },
         ),
         _TextAlignOption(
@@ -103,6 +106,7 @@ class _TextAlignEditorState extends State<_TextAlignEditor> {
           isActive: _textAlign == TextAlign.justify,
           onPressed: () {
             setState(() => _textAlign = TextAlign.justify);
+            widget.onTextAlignEdited(_textAlign);
           },
         ),
       ],

@@ -13,12 +13,16 @@ class TextStyleEditor extends StatefulWidget {
   final TextStyle textStyle;
   final TextAlign textAlign;
   final Function(TextStyle) onTextStyleEdited;
+  final Function(TextAlign) onTextAlignEdited;
+  final Function(bool) onCpasLockTaggle;
 
   TextStyleEditor({
     required this.fonts,
     required this.textStyle,
     required this.textAlign,
     required this.onTextStyleEdited,
+    required this.onTextAlignEdited,
+    required this.onCpasLockTaggle,
   });
 
   @override
@@ -28,10 +32,12 @@ class TextStyleEditor extends StatefulWidget {
 class _TextStyleEditorState extends State<TextStyleEditor> {
   ToolbarAction _currentTool = ToolbarAction.editing;
   late TextStyle _textStyle;
+  late TextAlign _textAlign;
 
   @override
   void initState() {
     _textStyle = widget.textStyle;
+    _textAlign = widget.textAlign;
 
     super.initState();
   }
@@ -52,6 +58,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                 case ToolbarAction.fontFamily:
                   return FontFamilyTool(
                     fonts: widget.fonts,
+                    selectedFont: _textStyle.fontFamily,
                     onSelectFont: (fontFamily) {
                       setState(() => _textStyle =
                           _textStyle.copyWith(fontFamily: fontFamily));
@@ -61,9 +68,25 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                   );
                 case ToolbarAction.strikethrough:
                   return TextFormatTool(
-                    onTextFormatEdited: (bold, italic) {},
-                    onTextAlignEdited: (align) {},
-                    onCpasLockTaggle: (caps) {},
+                    bold: _textStyle.fontWeight == FontWeight.bold,
+                    italic: _textStyle.fontStyle == FontStyle.italic,
+                    textAlign: _textAlign,
+                    onTextFormatEdited: (bold, italic) {
+                      setState(() => _textStyle = _textStyle.copyWith(
+                            fontWeight:
+                                bold ? FontWeight.bold : FontWeight.normal,
+                            fontStyle:
+                                italic ? FontStyle.italic : FontStyle.normal,
+                          ));
+
+                      widget.onTextStyleEdited(_textStyle);
+                    },
+                    onTextAlignEdited: (align) {
+                      setState(() => _textAlign = align);
+
+                      widget.onTextAlignEdited(align);
+                    },
+                    onCpasLockTaggle: widget.onCpasLockTaggle,
                   );
                 case ToolbarAction.fontSize:
                   return FontSizeTool(

@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     textStyle =
         TextStyle(fontSize: 25, color: Colors.black, fontFamily: 'Billabong');
+    textAlign = TextAlign.left;
 
     super.initState();
   }
@@ -84,10 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       fonts: fonts,
                       textStyle: textStyle,
                       textAlign: textAlign,
+                      onTextAlignEdited: (align) {
+                        setState(() {
+                          textAlign = align;
+                        });
+                      },
                       onTextStyleEdited: (style) {
                         setState(() {
                           textStyle = textStyle.merge(style);
                         });
+                      },
+                      onCpasLockTaggle: (caps) {
+                        print(caps);
                       },
                     ),
                   ),
