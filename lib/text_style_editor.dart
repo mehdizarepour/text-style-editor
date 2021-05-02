@@ -1,7 +1,9 @@
 library text_style_editor;
 
-import 'package:flutter/material.dart';
+export 'src/toolbar_action.dart';
 
+import 'package:flutter/material.dart';
+import 'src/toolbar_action.dart';
 import 'src/tools/background_color_tool.dart';
 import 'src/color_palette.dart';
 import 'src/tools/font_family_tool.dart';
@@ -17,6 +19,7 @@ class TextStyleEditor extends StatefulWidget {
   final Function(TextStyle)? onTextStyleEdited;
   final Function(TextAlign)? onTextAlignEdited;
   final Function(bool)? onCpasLockTaggle;
+  final Function(EditorToolbarAction)? onToolbarActionChanged;
 
   TextStyleEditor({
     required this.fonts,
@@ -26,6 +29,7 @@ class TextStyleEditor extends StatefulWidget {
     this.onTextStyleEdited,
     this.onTextAlignEdited,
     this.onCpasLockTaggle,
+    this.onToolbarActionChanged,
   });
 
   @override
@@ -33,7 +37,7 @@ class TextStyleEditor extends StatefulWidget {
 }
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
-  ToolbarAction _currentTool = ToolbarAction.editor;
+  EditorToolbarAction _currentTool = EditorToolbarAction.editor;
   late TextStyle _textStyle;
   late TextAlign _textAlign;
   late List<Color> _paletteColors;
@@ -65,7 +69,12 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
     return Column(
       children: [
         Toolbar(
-          onToolSelect: (action) => setState(() => _currentTool = action),
+          onToolSelect: (action) {
+            setState(() => _currentTool = action);
+            if (widget.onToolbarActionChanged != null) {
+              widget.onToolbarActionChanged!(action);
+            }
+          },
         ),
         Divider(),
         Expanded(
@@ -73,7 +82,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
             child: () {
               // Choice tools
               switch (_currentTool) {
-                case ToolbarAction.fontFamilyTool:
+                case EditorToolbarAction.fontFamilyTool:
                   return FontFamilyTool(
                     fonts: widget.fonts,
                     selectedFont: _textStyle.fontFamily,
@@ -86,7 +95,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.fontOptionTool:
+                case EditorToolbarAction.fontOptionTool:
                   return TextFormatTool(
                     bold: _textStyle.fontWeight == FontWeight.bold,
                     italic: _textStyle.fontStyle == FontStyle.italic,
@@ -116,7 +125,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.fontSizeTool:
+                case EditorToolbarAction.fontSizeTool:
                   return FontSizeTool(
                     fontSize: _textStyle.fontSize ?? 0,
                     letterHeight: _textStyle.height ?? 1.2,
@@ -137,7 +146,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.fontColorTool:
+                case EditorToolbarAction.fontColorTool:
                   return BackgroundColorTool(
                     activeColor: _textStyle.color,
                     colors: _paletteColors,
@@ -150,7 +159,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.backgroundColorTool:
+                case EditorToolbarAction.backgroundColorTool:
                   return ColorPalette(
                     activeColor: _textStyle.backgroundColor,
                     colors: _paletteColors,
@@ -163,7 +172,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.editor:
+                case EditorToolbarAction.editor:
                   return Container();
                 default:
                   return Container();

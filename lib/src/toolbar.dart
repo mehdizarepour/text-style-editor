@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'option_button.dart';
-
-enum ToolbarAction {
-  editor,
-  fontFamilyTool,
-  fontOptionTool,
-  fontSizeTool,
-  fontColorTool,
-  backgroundColorTool,
-}
+import 'toolbar_action.dart';
 
 class Toolbar extends StatefulWidget {
-  final Function(ToolbarAction) onToolSelect;
+  final Function(EditorToolbarAction) onToolSelect;
 
   Toolbar({required this.onToolSelect});
 
@@ -21,58 +13,61 @@ class Toolbar extends StatefulWidget {
 }
 
 class _ToolbarState extends State<Toolbar> {
-  ToolbarAction _selectedAction = ToolbarAction.editor;
+  EditorToolbarAction _selectedAction = EditorToolbarAction.editor;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.editor,
+          isActive: _selectedAction == EditorToolbarAction.editor,
           child: Icon(Icons.keyboard),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.editor);
-            widget.onToolSelect(ToolbarAction.editor);
+            setState(() => _selectedAction = EditorToolbarAction.editor);
+            widget.onToolSelect(EditorToolbarAction.editor);
           },
         ),
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.fontFamilyTool,
+          isActive: _selectedAction == EditorToolbarAction.fontFamilyTool,
           child: Icon(Icons.title),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.fontFamilyTool);
-            widget.onToolSelect(ToolbarAction.fontFamilyTool);
+            setState(
+                () => _selectedAction = EditorToolbarAction.fontFamilyTool);
+            widget.onToolSelect(EditorToolbarAction.fontFamilyTool);
           },
         ),
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.fontOptionTool,
+          isActive: _selectedAction == EditorToolbarAction.fontOptionTool,
           child: Icon(Icons.strikethrough_s),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.fontOptionTool);
-            widget.onToolSelect(ToolbarAction.fontOptionTool);
+            setState(
+                () => _selectedAction = EditorToolbarAction.fontOptionTool);
+            widget.onToolSelect(EditorToolbarAction.fontOptionTool);
           },
         ),
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.fontSizeTool,
+          isActive: _selectedAction == EditorToolbarAction.fontSizeTool,
           child: Icon(Icons.format_size),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.fontSizeTool);
-            widget.onToolSelect(ToolbarAction.fontSizeTool);
+            setState(() => _selectedAction = EditorToolbarAction.fontSizeTool);
+            widget.onToolSelect(EditorToolbarAction.fontSizeTool);
           },
         ),
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.fontColorTool,
+          isActive: _selectedAction == EditorToolbarAction.fontColorTool,
           child: Icon(Icons.format_color_text),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.fontColorTool);
-            widget.onToolSelect(ToolbarAction.fontColorTool);
+            setState(() => _selectedAction = EditorToolbarAction.fontColorTool);
+            widget.onToolSelect(EditorToolbarAction.fontColorTool);
           },
         ),
         OptionButton(
-          isActive: _selectedAction == ToolbarAction.backgroundColorTool,
+          isActive: _selectedAction == EditorToolbarAction.backgroundColorTool,
           child: Icon(Icons.format_color_fill),
           onPressed: () {
-            setState(() => _selectedAction = ToolbarAction.backgroundColorTool);
-            widget.onToolSelect(ToolbarAction.backgroundColorTool);
+            setState(() =>
+                _selectedAction = EditorToolbarAction.backgroundColorTool);
+            widget.onToolSelect(EditorToolbarAction.backgroundColorTool);
           },
         ),
       ],
