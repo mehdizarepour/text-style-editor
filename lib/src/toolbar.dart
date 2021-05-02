@@ -79,29 +79,3 @@ class _ToolbarState extends State<Toolbar> {
     );
   }
 }
-
-class _ToolbarItem extends StatelessWidget {
-  final IconData icon;
-  final Function() onTap;
-  final bool isActive;
-
-  _ToolbarItem({
-    required this.icon,
-    required this.onTap,
-    this.isActive = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-        color: isActive ? Colors.grey : null,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.fromBorderSide(BorderSide()),
-      ),
-      child: Center(child: IconButton(icon: Icon(icon), onPressed: onTap)),
-    );
-  }
-}
