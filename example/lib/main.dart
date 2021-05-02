@@ -72,8 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    textStyle =
-        TextStyle(fontSize: 25, color: Colors.black, fontFamily: 'Billabong');
+    textStyle = TextStyle(
+      fontSize: 15,
+      color: Colors.white,
+      fontFamily: 'OpenSans',
+    );
+
     textAlign = TextAlign.left;
 
     super.initState();
@@ -89,41 +93,49 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'Lorem ipsum dolor sit amet',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   style: textStyle,
                   textAlign: textAlign,
                   maxLines: 10,
                 ),
               ),
             ),
-            Expanded(
-              child: SafeArea(
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: TextStyleEditor(
-                      fonts: fonts,
-                      paletteColors: paletteColors,
-                      textStyle: textStyle,
-                      textAlign: textAlign,
-                      onTextAlignEdited: (align) {
-                        setState(() {
-                          textAlign = align;
-                        });
-                      },
-                      onTextStyleEdited: (style) {
-                        setState(() {
-                          textStyle = textStyle.merge(style);
-                        });
-                      },
-                      onCpasLockTaggle: (caps) {
-                        print(caps);
-                      },
+            SafeArea(
+              bottom: false,
+              child: Container(
+                height: 300,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.symmetric(
+                    horizontal: BorderSide(
+                      color: Theme.of(context).backgroundColor,
                     ),
                   ),
                 ),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: TextStyleEditor(
+                    fonts: fonts,
+                    paletteColors: paletteColors,
+                    textStyle: textStyle,
+                    textAlign: textAlign,
+                    onTextAlignEdited: (align) {
+                      setState(() {
+                        textAlign = align;
+                      });
+                    },
+                    onTextStyleEdited: (style) {
+                      setState(() {
+                        textStyle = textStyle.merge(style);
+                      });
+                    },
+                    onCpasLockTaggle: (caps) {
+                      print(caps);
+                    },
+                  ),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
