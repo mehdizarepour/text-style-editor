@@ -33,7 +33,7 @@ class TextStyleEditor extends StatefulWidget {
 }
 
 class _TextStyleEditorState extends State<TextStyleEditor> {
-  ToolbarAction _currentTool = ToolbarAction.editing;
+  ToolbarAction _currentTool = ToolbarAction.editor;
   late TextStyle _textStyle;
   late TextAlign _textAlign;
   late List<Color> _paletteColors;
@@ -73,7 +73,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
             child: () {
               // Choice tools
               switch (_currentTool) {
-                case ToolbarAction.fontFamily:
+                case ToolbarAction.fontFamilyTool:
                   return FontFamilyTool(
                     fonts: widget.fonts,
                     selectedFont: _textStyle.fontFamily,
@@ -86,7 +86,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.strikethrough:
+                case ToolbarAction.fontOptionTool:
                   return TextFormatTool(
                     bold: _textStyle.fontWeight == FontWeight.bold,
                     italic: _textStyle.fontStyle == FontStyle.italic,
@@ -116,7 +116,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.fontSize:
+                case ToolbarAction.fontSizeTool:
                   return FontSizeTool(
                     fontSize: _textStyle.fontSize ?? 0,
                     letterHeight: _textStyle.height ?? 1.2,
@@ -137,7 +137,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.fontColor:
+                case ToolbarAction.fontColorTool:
                   return BackgroundColorTool(
                     activeColor: _textStyle.color,
                     colors: _paletteColors,
@@ -150,7 +150,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.backgroundColor:
+                case ToolbarAction.backgroundColorTool:
                   return ColorPalette(
                     activeColor: _textStyle.backgroundColor,
                     colors: _paletteColors,
@@ -163,7 +163,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-                case ToolbarAction.editing:
+                case ToolbarAction.editor:
                   return Container();
                 default:
                   return Container();
