@@ -16,10 +16,12 @@ class OptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       constraints: BoxConstraints.tight(size ?? Size(45, 45)),
-      fillColor: isActive ? Colors.grey : null,
+      highlightColor: Theme.of(context).colorScheme.background,
+      splashColor: Theme.of(context).colorScheme.background,
+      fillColor: isActive ? Theme.of(context).colorScheme.background : null,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(),
+        side: BorderSide(color: Theme.of(context).colorScheme.surface),
       ),
       child: child,
       onPressed: onPressed,

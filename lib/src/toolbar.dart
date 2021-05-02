@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'option_button.dart';
+
 enum ToolbarAction {
   editing,
   fontFamily,
@@ -25,50 +27,50 @@ class _ToolbarState extends State<Toolbar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.editing,
-          icon: Icons.keyboard,
-          onTap: () {
+          child: Icon(Icons.keyboard),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.editing);
             widget.onToolSelect(ToolbarAction.editing);
           },
         ),
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.fontFamily,
-          icon: Icons.title,
-          onTap: () {
+          child: Icon(Icons.title),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.fontFamily);
             widget.onToolSelect(ToolbarAction.fontFamily);
           },
         ),
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.strikethrough,
-          icon: Icons.strikethrough_s,
-          onTap: () {
+          child: Icon(Icons.strikethrough_s),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.strikethrough);
             widget.onToolSelect(ToolbarAction.strikethrough);
           },
         ),
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.fontSize,
-          icon: Icons.format_size,
-          onTap: () {
+          child: Icon(Icons.format_size),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.fontSize);
             widget.onToolSelect(ToolbarAction.fontSize);
           },
         ),
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.fontColor,
-          icon: Icons.format_color_text,
-          onTap: () {
+          child: Icon(Icons.format_color_text),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.fontColor);
             widget.onToolSelect(ToolbarAction.fontColor);
           },
         ),
-        _ToolbarItem(
+        OptionButton(
           isActive: _selectedAction == ToolbarAction.backgroundColor,
-          icon: Icons.format_color_fill,
-          onTap: () {
+          child: Icon(Icons.format_color_fill),
+          onPressed: () {
             setState(() => _selectedAction = ToolbarAction.backgroundColor);
             widget.onToolSelect(ToolbarAction.backgroundColor);
           },

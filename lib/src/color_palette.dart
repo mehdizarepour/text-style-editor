@@ -66,7 +66,10 @@ class _ColorHolder extends StatelessWidget {
       height: 40,
       width: 40,
       decoration: BoxDecoration(
-        border: active ? Border.fromBorderSide(BorderSide()) : null,
+        border: active
+            ? Border.fromBorderSide(
+                BorderSide(color: Theme.of(context).colorScheme.onSurface))
+            : null,
         borderRadius: BorderRadius.circular(50),
       ),
       child: Center(
@@ -76,7 +79,8 @@ class _ColorHolder extends StatelessWidget {
             height: 35,
             width: 35,
             decoration: BoxDecoration(
-              border: Border.fromBorderSide(BorderSide()),
+              border: Border.fromBorderSide(
+                  BorderSide(color: Theme.of(context).colorScheme.onSurface)),
               borderRadius: BorderRadius.circular(50),
               color: color,
             ),

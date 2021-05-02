@@ -11,10 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TextStyleEditor Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      // theme: ThemeData.light(),
+      theme: ThemeData.dark(),
       home: MyHomePage(title: 'TextStyleEditor Demo'),
     );
   }

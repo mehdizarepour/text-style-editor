@@ -94,15 +94,25 @@ class _ResizeSliderState extends State<_ResizeSlider> {
       children: [
         Icon(widget.icon),
         Expanded(
-          child: Slider(
-            value: _value,
-            onChanged: (value) {
-              setState(() => _value = value);
+          child: SliderTheme(
+            data: SliderThemeData(
+              activeTrackColor: Theme.of(context).colorScheme.background,
+              inactiveTrackColor: Theme.of(context).colorScheme.background,
+              thumbColor: Theme.of(context).colorScheme.background,
+              overlayColor:
+                  Theme.of(context).colorScheme.background.withOpacity(0.2),
+              trackHeight: 2,
+            ),
+            child: Slider(
+              value: _value,
+              onChanged: (value) {
+                setState(() => _value = value);
 
-              widget.onChange(value);
-            },
-            min: widget.min!,
-            max: widget.max!,
+                widget.onChange(value);
+              },
+              min: widget.min!,
+              max: widget.max!,
+            ),
           ),
         ),
         Text(_value.toStringAsFixed(1)),

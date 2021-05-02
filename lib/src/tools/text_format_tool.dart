@@ -130,7 +130,9 @@ class _TextAlignOption extends StatelessWidget {
     return IconButton(
       iconSize: 32,
       icon: Icon(icon),
-      color: isActive ? Colors.grey : null,
+      color: isActive
+          ? Theme.of(context).iconTheme.color
+          : Theme.of(context).disabledColor,
       onPressed: onPressed,
     );
   }
