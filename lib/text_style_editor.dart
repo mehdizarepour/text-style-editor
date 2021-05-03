@@ -11,16 +11,46 @@ import 'src/tools/font_size_tool.dart';
 import 'src/tools/text_format_tool.dart';
 import 'src/toolbar.dart';
 
+/// Text style editor
+/// A flutter widget that edit text style and text alignment
+///
+/// You can pass your text style or alignment to the widget
+/// and then get the edited text style
 class TextStyleEditor extends StatefulWidget {
+  /// Editor's font families
   final List<String> fonts;
+
+  /// The text style
   final TextStyle textStyle;
+
+  /// The text alignment
   final TextAlign textAlign;
+
+  /// Editor's palette colors
   final List<Color>? paletteColors;
+
+  /// [onTextStyleEdited] will be called after [textStyle] prop has changed
   final Function(TextStyle)? onTextStyleEdited;
+
+  /// [onTextAlignEdited] will be called after [textAlingment] prop has changed
   final Function(TextAlign)? onTextAlignEdited;
+
+  /// [onCpasLockTaggle] will be called after caps lock has changed
   final Function(bool)? onCpasLockTaggle;
+
+  /// [onToolbarActionChanged] will be called after editor's tool has changed
   final Function(EditorToolbarAction)? onToolbarActionChanged;
 
+  /// Create a [TextStyleEditor] widget
+  ///
+  /// [fonts] list of font families that you want to use in editor.
+  /// [textStyle] initiate text style.
+  /// [textAlign] initiate text alignment.
+  ///
+  /// [onTextStyleEdited] callback will be called every time [textStyle] has changed.
+  /// [onTextAlignEdited] callback will be called every time [textAlign] has changed.
+  /// [onCpasLockTaggle] callback will be called every time caps lock has changed to off or on.
+  /// [onToolbarActionChanged] callback will be called every time editor's tool has changed.
   TextStyleEditor({
     required this.fonts,
     required this.textStyle,

@@ -1,3 +1,26 @@
+## [1.0.0] - 2021-05-03
+
+- New design & more features
+
+```diff
+  TextStyleEditor({
++   required this.fonts,
++   required this.textAlign,
++   this.paletteColors,
+    this.textStyle,
+-   required this.onTextStyleChanged,
++   this.onTextStyleEdited,
+-   required this.onTextAlignChanged,
++   this.onTextAlignEdited,
++   this.onCpasLockTaggle,
++   this.onToolbarActionChanged,
+-   this.primaryColor = Colors.black26,
+-   this.secondaryColor = Colors.black12,
+-   this.backgroundColor = Colors.white,
+-   this.height,
+  });
+```
+
 ## [0.2.1] - 2020-08-14
 
 - Add default font family to `FontFamilyTool`
