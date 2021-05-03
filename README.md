@@ -9,72 +9,73 @@ Text style editor widget for flutter
 
 ## Features
 
-- Edit `TextStyle` object
-  - font color
-  - font family
-  - font size
-- Edit `TextAlign`
+- Edit `TextStyle`
+- Change `TextAlign`
+- Taggle `Caps lock`
 
 ## Screenshot
 
-![Image of Yaktocat](https://raw.githubusercontent.com/mehdizarepour/assets/master/images/text-style-editor-screenshot.gif)
+![editor light](https://user-images.githubusercontent.com/8446770/116907239-93193600-ac56-11eb-86b5-80eb5976a0ad.gif)
+![editor dark](https://user-images.githubusercontent.com/8446770/116824956-0dd44980-aba2-11eb-8061-2ebe4cb8a7b2.gif)
 
 
 ## Installation
 
-Add `text_style_editor: ^0.2.0` to your `pubspec.yaml` dependencies. And import it:
+Add `text_style_editor: ^1.0.0` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:text_style_editor/text_style_editor.dart';
 ```
 
-### How to add package's fonts to your project
-
-Simply add font names with package name (`text_style_editor`) to your `pubspec.yaml` fonts.
-
-```yaml
-fonts:
-  - family: Billabong
-    fonts:
-      - asset: packages/text_style_editor/fonts/Billabong.ttf
-```
-
-To see the list of all supported fonts, [click here](https://github.com/mehdizarepour/text_style_editor/tree/master/lib/fonts)
-
 ## How to use
 
 Simply create a `TextStyleEditor` widget, and pass the required params:
 
+**Params**
+
+- fonts *(`List<String>`)*: List of the font families that you want to use in the Editor.
+  + `required`
+- textStyle *(`TextStyle`)*: The initial text style that you want to edit.
+  + `required`
+- textAlign *(`TextAlign`)*: The initial text align that you want to change.
+  + `required`
+- paletteColors *(`List<Color>`)*: List of the colors that you want to use in the Editor's palette.
+  + `optional`
+- onTextAlignEdited *(`Function(TextStyle)`)*: Callback will be called every time `textStyle` has changed.
+  + `optional`
+- onTextStyleEdited *(`Function(TextAlign)`)*: Callback will be called every time `textAlign` has changed.
+  + `optional`
+- onCpasLockTaggle *(`Function(bool)`)*: Callback will be called every time caps lock has changed to off or on.
+  + `optional`
+- onToolbarActionChanged *(`Function(EditorToolbarAction)`)*: Callback will be called every time editor's tool has changed.
+  + `optional`
+
+
+**Example**
+
 ```dart
 TextStyleEditor(
-  /// Optional, pass it if you have a `TextStyle` that you want to edit it.
-  textStyle: defaultTextStyle,
-  onTextStyleChange: (editedTextStyle) {
+  fonts: fonts,
+  textStyle: textStyle,
+  textAlign: textAlign,
+  paletteColors: paletteColors,
+  onTextAlignEdited: (align) {
     setState(() {
-      textStyle = editedTextStyle;
+      textAlign = align;
     });
   },
-  onTextAlignChanged: (editedTextAlignment) {
+  onTextStyleEdited: (style) {
     setState(() {
-      textAlign = editedTextAlignment;
+      textStyle = textStyle.merge(style);
     });
+  },
+  onCpasLockTaggle: (caps) {
+    // Uppercase or lowercase letters
   },
 )
 ```
 
-## Params
-
-```dart
-TextStyleEditor(
-  height: 300,
-  backgroundColor: Colors.white,
-  primaryColor: Colors.black26,
-  secondaryColor: Colors.black12,
-  textStyle: defaultTextStyle,
-  onTextStyleChanged: onTextStyleChangeCallBack,
-  onTextAlignChanged: onTextAlignChangedCallBack,
-)
-```
+**To see complete example: [examples](https://github.com/mehdizarepour/text_style_editor/blob/master/example/lib/main.dart)**
 
 # MIT License
 
