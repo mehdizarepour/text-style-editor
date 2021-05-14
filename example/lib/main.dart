@@ -119,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     paletteColors: paletteColors,
                     textStyle: textStyle,
                     textAlign: textAlign,
+                    initialTool: EditorToolbarAction.fontFamilyTool,
                     onTextAlignEdited: (align) {
                       setState(() {
                         textAlign = align;
