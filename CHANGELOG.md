@@ -1,6 +1,6 @@
 ## [1.0.1] - 2021-05-14
 
-- Add `inithialTool` prop
+- Add `initialTool` prop
 
 ## [1.0.0] - 2021-05-03
 

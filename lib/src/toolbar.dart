@@ -4,11 +4,11 @@ import 'option_button.dart';
 import 'toolbar_action.dart';
 
 class Toolbar extends StatefulWidget {
-  final EditorToolbarAction inithialTool;
+  final EditorToolbarAction initialTool;
   final Function(EditorToolbarAction) onToolSelect;
 
   Toolbar({
-    this.inithialTool = EditorToolbarAction.editor,
+    this.initialTool = EditorToolbarAction.editor,
     required this.onToolSelect,
   });
 
@@ -20,7 +20,7 @@ class _ToolbarState extends State<Toolbar> {
   late EditorToolbarAction _selectedAction;
   @override
   void initState() {
-    _selectedAction = widget.inithialTool;
+    _selectedAction = widget.initialTool;
 
     super.initState();
   }

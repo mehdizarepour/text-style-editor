@@ -27,7 +27,7 @@ class TextStyleEditor extends StatefulWidget {
   final TextAlign textAlign;
 
   /// The inithial editor tool
-  final EditorToolbarAction inithialTool;
+  final EditorToolbarAction initialTool;
 
   /// Editor's palette colors
   final List<Color>? paletteColors;
@@ -59,7 +59,7 @@ class TextStyleEditor extends StatefulWidget {
     required this.textStyle,
     required this.textAlign,
     this.paletteColors,
-    this.inithialTool = EditorToolbarAction.editor,
+    this.initialTool = EditorToolbarAction.editor,
     this.onTextStyleEdited,
     this.onTextAlignEdited,
     this.onCpasLockTaggle,
@@ -78,7 +78,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
 
   @override
   void initState() {
-    _currentTool = widget.inithialTool;
+    _currentTool = widget.initialTool;
     _textStyle = widget.textStyle;
     _textAlign = widget.textAlign;
 
@@ -104,7 +104,7 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
     return Column(
       children: [
         Toolbar(
-          inithialTool: _currentTool,
+          initialTool: _currentTool,
           onToolSelect: (action) {
             setState(() => _currentTool = action);
             if (widget.onToolbarActionChanged != null) {
